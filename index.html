@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>NASOQ</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="description" content="">
+    <meta name="author" content="Kazem Cheshmi">
+
+    <!-- Le styles -->
+    <link href="index_files/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+    </style>
+
+    <!-- Font Awesome icons -->
+    <link href="index_files/font-awesome.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="index_files/prettify.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" async="" src="index_files/ga.js"></script><script type="text/javascript" src="index_files/prettify.js"></script>
+    <link href="index_files/prettify-sunburst.css" type="text/css" rel="stylesheet">
+    <link  href="index_files/anim-typewriter.css" rel="steps">
+  </head>
+
+  <body onload="prettyPrint()">
+
+    <div id="dic_bubble" class="selection_bubble fontSize13 noSelect" style="z-index: 9999; border: 1px solid rgb(74, 174, 222); visibility: hidden;"></div><div class="navbar navbar-fixed-top">
+      <div class="navbar-inner" >
+        <div class="container" >
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" >
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">NASOQ</a>
+          <div class="nav-collapse" >
+            <ul class="nav">
+<!--               <li><a href="#gettingstarted">Getting Started</a></li> -->
+          <!--    <li><a href="http://halide-lang.org/tutorials/tutorial_introduction.html">Tutorials</a></li> -->
+<!--               <li><a href="#publications">Publications</a></li>
+              <li><a href="#resources">Resources</a></li> -->
+            <!--  <li class="divider-vertical"></li>
+              <li><a href="http://halide-lang.org/docs">Docs</a></li>
+              <li><a href="http://github.com/halide/Halide/issues">Bugs</a></li>
+              <li><a href="http://github.com/halide/Halide/wiki">Wiki</a></li>
+              <li class="divider-vertical"></li>
+              <li><a href="http://stackoverflow.com/questions/tagged/halide"><i class="fa fa-stack-overflow"></i>/#halide</a></li>
+              --><!--
+              <li class="divider-vertical"></li>
+              <li><a href="demo">Demo</a></li>
+              -->
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/sympiler/nasoq"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1031;" src="index_files/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    
+
+
+    <div class="hero-unit" style="background-color:#959df3;">
+
+      <div class="container" >
+        <h1 >NASOQ</h1>
+        <p> </p>
+  
+      </div>
+
+      <div class="container" >
+        <div class="typewriter">
+  <h1>Numerically Accurate Sparsity-Oriented QP solver </h1>
+</div>
+  
+      </div>
+
+      
+    </div>
+
+
+    <div class="container" data-spy="scroll" data-target=".nav-collapse" data-offset="15">
+      <section id="overview">
+        <div class="page-header">
+          <h1>Overview</h1>
+        </div>
+        <p>NASOQ is a new, full-space QP algorithm
+that provides accurate, efficient, and scalable solutions for QP problems. </p>
+        <p></p>
+        <img class="animated-gif" src="index_files/nasoq_tutorial.gif" alt="NASOQ" width="600" height=auto >
+
+        <!-- TODO big idea: separate schedule -->
+
+      </section>
+
+<!--       <section id="gettingstarted">
+        <div class="page-header">
+          <h1>Getting Started</h1>
+        </div>
+
+        <p> Sympiler can be built from source code. Please look at the <a href="https://github.com/sympiler/sympiler/blob/master/README.md"> README </a> file in the Sympiler repository for configuration instructions. The details of the Sympiler internals are explained in the SC17 <a href="https://dl.acm.org/citation.cfm?id=3126936&CFID=825768759&CFTOKEN=28284703">paper </a> and <a href="index_files/Sympiler_SC17_TALK.pdf"> presentation</a>. </p> -->
+
+       
+
+        <!-- TODO explain main data types, usage -->
+        <!-- TODO explain, show JIT vs. static compilation -->
+
+<!--        <h2>Course Notes</h2>
+
+        <p>We taught a <a href="http://halide-lang.org/cvpr2015.html">course on Halide</a> at CVPR 2015. The course notes are a useful introduction to Halide.</p>
+
+        <p>Frédo Durand also taught an introduction to Halide in his <a href="https://stellar.mit.edu/S/course/6/sp15/6.815/index.html">6.815/6.865</a> computational photography course at MIT.</p>
+
+        <ul>
+            <li><a href="http://stellar.mit.edu/S/course/6/sp15/6.815/courseMaterial/topics/topic2/lectureNotes/14_Halide_print/14_Halide_print.pdf">Lecture 1</a></li>
+            <li><a href="http://stellar.mit.edu/S/course/6/sp15/6.815/courseMaterial/topics/topic2/lectureNotes/15_Halide2/15_Halide2.pdf">Lecture 2</a></li>
+            <li><a href="http://stellar.mit.edu/S/course/6/sp15/6.815/courseMaterial/topics/topic2/lectureNotes/16_Halide_3/16_Halide_3.pdf">Lecture 3</a></li>
+            <li><a href="http://stellar.mit.edu/S/course/6/sp15/6.815/courseMaterial/topics/topic2/lectureNotes/17_Halide4/17_Halide4.pdf">Lecture 4</a></li>
+        </ul>
+       
+-->
+
+
+      <section id="publications">
+        <div class="page-header">
+          <h1>Publications</h1>
+        </div>
+
+<!--         <p>
+          These academic publications explain how the symbolic information in sparse methods can guide the code generation phase in Sympiler.  
+        </p> -->
+
+        <p>
+          <strong>NASOQ: Numerically Accurate Sparsity-Oriented QP Solver</strong>
+          <br>
+          <a href="http://www.cheshmi.cc/">Kazem Cheshmi</a>,
+          <a href="http://dannykaufman.io/">Danny Kaufman</a>,
+          <a href="http://people.csail.mit.edu/skamil/">Shoaib Kamil</a>,
+          <a href="https://www.cs.toronto.edu/~mmehride/">Maryam Mehri Dehnavi</a>
+          <br>
+          <em>ACM Trans. Graph. 39, 4, Article 1 (July 2020), 17 pages. <a href="https://doi.org/10.
+1145/3386569.3392486">ACM DL</a>. <a href="index_files/nasoq_siggraph20.pdf"> <img border="0" alt="NASOQ draft" src="index_files/pdf_icon.png" width="25" height="15">  </a> </em>   
+        </p>
+</section>
+
+<!--         <p>
+          <strong>ParSy: Inspection and Transformation of Sparse Matrix Computations for Parallelism</strong>
+          <br>
+          <a href="http://www.cheshmi.cc/">Kazem Cheshmi</a>,
+          <a href="http://people.csail.mit.edu/skamil/">Shoaib Kamil</a>,
+          <a href="http://cgi.cs.arizona.edu/~mstrout/">Michelle Mills Strout</a>,
+          <a href="https://www.cs.toronto.edu/~mmehride/">Maryam Mehri Dehnavi</a>
+          <br>
+          <em>In Proceedings of the International Conference for High Performance Computing, Networking, Storage, and Analysis (SC '18). IEEE Press, Piscataway, NJ, USA, Article 62, 15 pages. <a href="http://dl.acm.org/citation.cfm?id=3291656.3291739">ACM DL</a>.
+            <a href="index_files/parsy.bib" target="_blank"> <u>BibTex</u></a> <a href="index_files/parsy.enw" target="_blank"> <u>EndNote</u></a>  <a href="index_files/parsy-ref.txt" target="_blank"><u> ACM Ref</u></a>. 
+            <a href="index_files/SC18-final.pdf"> <img border="0" alt="ParSy Talk" src="index_files/present_icon.svg" width="20" height="20">  </a> 
+           <a href="https://www.cs.toronto.edu/~mmehride/papers/Parsy.pdf"> <img border="0" alt="ParSy SC" src="index_files/pdf_icon.png" width="25" height="15">  </a>  </em> 
+        </p> -->
+
+
+<!--        
+      
+-->
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="index_files/jquery.html"></script>
+    <script src="index_files/bootstrap-transition.html"></script>
+    <script src="index_files/bootstrap-alert.html"></script>
+    <script src="index_files/bootstrap-modal.html"></script>
+    <script src="index_files/bootstrap-dropdown.html"></script>
+    <script src="index_files/bootstrap-scrollspy.html"></script>
+    <script src="index_files/bootstrap-tab.html"></script>
+    <script src="index_files/bootstrap-tooltip.html"></script>
+    <script src="index_files/bootstrap-popover.html"></script>
+    <script src="index_files/bootstrap-button.html"></script>
+    <script src="index_files/bootstrap-collapse.html"></script>
+    <script src="index_files/bootstrap-carousel.html"></script>
+    <script src="index_files/bootstrap-typeahead.html"></script>
+
+    <!-- Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-42245837-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-42245837-3');
+</script>
+
+
+
+<style type="text/css" data-typed-js-css="true"> 
+.typewriter h1 {
+  font-family: courier; /* Web-safe typewriter-like font */
+  font-size: 1.4em;
+  font-weight: normal;
+  display: inline-flex;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid black; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .06em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blinking-cursor .5s step-end
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blinking-cursor {
+  from, to { border-color: transparent }
+  50% { border-color: black; }
+}
+</style>
+</body></html>

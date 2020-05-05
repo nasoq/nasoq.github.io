@@ -1,0 +1,1 @@
+Kazem Cheshmi, Shoaib Kamil, Michelle Mills Strout, and Maryam Mehri Dehnavi. 2018. ParSy: inspection and transformation of sparse matrix computations for parallelism.  In <em>Proceedings of the International Conference for High Performance Computing, Networking, Storage, and Analysis</em> (SC '18). IEEE Press, Piscataway, NJ, USA,  Article 62, 15 pages.
