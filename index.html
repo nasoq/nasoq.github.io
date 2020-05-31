@@ -31,7 +31,7 @@
     <link  href="index_files/anim-typewriter.css" rel="steps">
   </head>
 
-  <body onload="prettyPrint()">
+  <body onload="prettyPrint()" >
 
     <div id="dic_bubble" class="selection_bubble fontSize13 noSelect" style="z-index: 9999; border: 1px solid rgb(74, 174, 222); visibility: hidden;"></div><div class="navbar navbar-fixed-top">
       <div class="navbar-inner" >
@@ -44,6 +44,11 @@
           <a class="brand" href="#">NASOQ</a>
           <div class="nav-collapse" >
             <ul class="nav">
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#publications">Publications</a></li>
+              <li><a href="#publications">Docs</a></li>
+              <li><a href="https://github.com/sympiler/nasoq">Code</a></li>
+              
 <!--               <li><a href="#gettingstarted">Getting Started</a></li> -->
           <!--    <li><a href="http://halide-lang.org/tutorials/tutorial_introduction.html">Tutorials</a></li> -->
 <!--               <li><a href="#publications">Publications</a></li>
@@ -90,13 +95,31 @@
 
     <div class="container" data-spy="scroll" data-target=".nav-collapse" data-offset="15">
       <section id="overview">
-        <div class="page-header">
+<!--         <div class="page-header">
           <h1>Overview</h1>
-        </div>
-        <p>NASOQ is a new, full-space QP algorithm
-that provides accurate, efficient, and scalable solutions for QP problems. </p>
-        <p></p>
-        <img class="animated-gif" src="index_files/nasoq_tutorial.gif" alt="NASOQ" width="600" height=auto >
+        </div> -->
+        <p  align="center"><img class="animated-gif" src="index_files/nasoq_tutorial.gif" alt="NASOQ" width="650" height=auto></p>
+        <p align="justify">Quadratic programs (QP), minimizations of quadratic objectives subject to linear inequality and equality constraints, are at the heart of algorithms across scientific domains. Applications include fundamental tasks in geometry processing, simulation, engineering, animation and finance where the accurate, reliable, efficient, and scalable solution of QP problems is critical. However, available QP algorithms generally provide either accuracy or scalability – but not both. Some algorithms reliably solve QP problems to high accuracy but work only for smaller-scale QP problems due to their reliance on dense matrix methods. Alternately, many other QP solvers scale well via sparse, efficient algorithms but cannot reliably deliver solutions at requested accuracies. Towards addressing the need for accurate and efficient QP solvers at scale, we develop NASOQ, a new, full-space QP algorithm that provides accurate, efficient, and scalable solutions for QP problems. To enable NASOQ we construct a new row modification method and fast implementation of LDL factorization for indefinite systems. Together they enable efficient updates and accurate solutions of the iteratively modified KKT systems required for accurate QP solves. While QP methods have been previously tested on large synthetic benchmarks, to test and compare NASOQ’s suitability for real-world applications we collect here a new benchmark set comprising a wide range of graphics-related QPs across physical simulation, animation, and geometry processing tasks. We combine these problems with numerous pre-existing stress-test QP benchmarks to form, to our knowledge, the largest-scale test set of application-based QP problems currently available. Building off of our base NASOQ solver we then develop and test two NASOQ variants against best, state-of-the-art available QP libraries – both commercial and open-source. Our two NASOQ-based methods each solve respectively 98.8% and 99.5% of problems across a range of requested accuracies from 10−3 to 10−9 with average speedups ranging from 1.7× to 24.8× over fastest competing methods. </p>
+
+<!--         <figure class="half" style="display:flex"  >
+            <img class="image-size" src="index_files/failure_All-1.png">
+            <img style="width:50%" src="index_files/perf_profile_e6.png">
+        </figure> -->
+
+<img style="width:50%" src="index_files/failure_All-1.png" align="left" />
+<img style="width:50%" src="index_files/perf_profile_e6.png" />
+
+<!--          <div class="row">
+  <div class="column">
+    <img src="index_files/perf_profile_e6.png" alt="Snow" style="width:50%">
+  </div>
+  <div class="column">
+    <img src="index_files/perf_profile_e6.png" alt="Forest" style="width:50%">
+  </div>
+</div>  -->
+
+        <!-- <p  align="center"><img class="animated-gif" src="index_files/perf_profile_e6.png" alt="NASOQ" width="400" height=auto></p> -->
+        
 
         <!-- TODO big idea: separate schedule -->
 
