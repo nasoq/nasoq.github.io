@@ -15,14 +15,10 @@
         padding-top: 40px;
         padding-bottom: 40px;
       }
-
-
     </style>
 
     <!-- Font Awesome icons -->
     <link href="index_files/font-awesome.css" rel="stylesheet">
-
-    <link href="index_files/multicol.css" rel="stylesheet">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -37,7 +33,8 @@
 
   <body onload="prettyPrint()" >
 
-    <div id="dic_bubble" class="selection_bubble fontSize13 noSelect" style="z-index: 9999; border: 1px solid rgb(74, 174, 222); visibility: hidden;"></div><div class="navbar navbar-fixed-top">
+    <div id="dic_bubble" class="selection_bubble fontSize13 noSelect" style="z-index: 9999; border: 1px solid rgb(74, 174, 222); visibility: hidden;"></div>
+    <div class="navbar navbar-fixed-top">
       <div class="navbar-inner" >
         <div class="container" >
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse" >
@@ -45,31 +42,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">NASOQ</a>
+          <a class="brand" href="index.html">NASOQ</a>
           <div class="nav-collapse" >
             <ul class="nav">
+              <li><a href="index.html">Home</a></li>
+              </ul>
+          </div>
+<!--           <div class="nav-collapse" >
+            <ul class="nav">
               <li><a href="#overview">Overview</a></li>
-              <li><a href="#whynasoq">Why NASOQ?</a></li>
               <li><a href="#publications">Publications</a></li>
               <li><a href="#publications">Docs</a></li>
               <li><a href="https://github.com/sympiler/nasoq">Code</a></li>
               
-<!--               <li><a href="#gettingstarted">Getting Started</a></li> -->
-          <!--    <li><a href="http://halide-lang.org/tutorials/tutorial_introduction.html">Tutorials</a></li> -->
-<!--               <li><a href="#publications">Publications</a></li>
-              <li><a href="#resources">Resources</a></li> -->
-            <!--  <li class="divider-vertical"></li>
-              <li><a href="http://halide-lang.org/docs">Docs</a></li>
-              <li><a href="http://github.com/halide/Halide/issues">Bugs</a></li>
-              <li><a href="http://github.com/halide/Halide/wiki">Wiki</a></li>
-              <li class="divider-vertical"></li>
-              <li><a href="http://stackoverflow.com/questions/tagged/halide"><i class="fa fa-stack-overflow"></i>/#halide</a></li>
-              --><!--
-              <li class="divider-vertical"></li>
-              <li><a href="demo">Demo</a></li>
-              -->
             </ul>
-          </div><!--/.nav-collapse -->
+          </div> -->
         </div>
       </div>
     </div>
@@ -82,37 +69,48 @@
     <div class="hero-unit" style="background-color:#959df3;">
 
       <div class="container" >
-        <h1 >NASOQ</h1>
-        <p> </p>
+        <h2 >NASOQ: Numerically Accurate Sparsity-Oriented QP Solver </h2>
+        <h4>Kazem Cheshmi, University of Toronto <br> Danny M. Kaufman, Adobe Research <br> Shoaib Kamil, Adobe Research <br> Maryam Mehri Dehnavi, University of Toronto </h4>
   
       </div>
+ 
+    </div>
 
-      <div class="container" >
-        <div class="typewriter">
-  <h1>Numerically Accurate Sparsity-Oriented QP solver </h1>
-</div>
-  
-      </div>
+<div class="container" data-spy="scroll" data-target=".nav-collapse" data-offset="15">
+      <section id="overview">
+        <p  align="center"><img src="index_files/banner.png" alt="NASOQ" width="100%" height=auto></p>
+        <p> The symbolic initialization phase of SoMod starts with creating an inclusive matrix, shown in Figure 1b from the matrices in Figure 1a which are inputs
+to the QP problem in Equation 1. The inclusive matrix is then permuted with a fill-reducing permutation to compute the sparsity pattern of the L-factor with
+minimum number of fill-ins. The sparsity pattern of the L-factor of the inclusive matrix in Figure 1b is computed and shown in Figure 1c. Boundaries of
+Supernodes are shown with dotted lines and supernode numbers are illustrated below the L-factor. The corresponding inclusive (assembly) tree of the L-factor
+in Figure 1c is shown in Figure 1d. </p>
+      </section>
 
-      
+    <div class="container" data-spy="scroll" data-target=".nav-collapse" data-offset="15">
+      <section id="paper">
+<!--         <div class="page-header">
+          <h1>Paper</h1>
+        </div> -->
+        <a href=""><strong>Paper (PDF)</strong></a>
+      </section>
     </div>
 
 
+
     <div class="container" data-spy="scroll" data-target=".nav-collapse" data-offset="15">
-      <section id="overview">
+      <section id="abstract">
         <div class="page-header">
-          <h1>Overview</h1>
+          <h1>Abstract</h1>
         </div>
-        <p  align="center"><img class="animated-gif" src="index_files/nasoq_tutorial.gif" alt="NASOQ" width="650" height=auto></p>
-        <p align="justify"> NASOQ is a scalable and efficient Quadratic Programming solver that obtains solutions to requested accuracies. On an extensive benchmark NASOQ improves robustness, accuracy and speed over best state-of-the-art solvers. Visit our <a href="siggraph20.html"><strong>SIGGRAPH 2020</strong></a> paper for detsils. </p>
+        
+        <p align="justify">Quadratic programs (QP), minimizations of quadratic objectives subject to linear inequality and equality constraints, are at the heart of algorithms across scientific domains. Applications include fundamental tasks in geometry processing, simulation, engineering, animation and finance where the accurate, reliable, efficient, and scalable solution of QP problems is critical. However, available QP algorithms generally provide either accuracy or scalability – but not both. Some algorithms reliably solve QP problems to high accuracy but work only for smaller-scale QP problems due to their reliance on dense matrix methods. Alternately, many other QP solvers scale well via sparse, efficient algorithms but cannot reliably deliver solutions at requested accuracies. Towards addressing the need for accurate and efficient QP solvers at scale, we develop NASOQ, a new, full-space QP algorithm that provides accurate, efficient, and scalable solutions for QP problems. To enable NASOQ we construct a new row modification method and fast implementation of LDL factorization for indefinite systems. Together they enable efficient updates and accurate solutions of the iteratively modified KKT systems required for accurate QP solves. While QP methods have been previously tested on large synthetic benchmarks, to test and compare NASOQ’s suitability for real-world applications we collect here a new benchmark set comprising a wide range of graphics-related QPs across physical simulation, animation, and geometry processing tasks. We combine these problems with numerous pre-existing stress-test QP benchmarks to form, to our knowledge, the largest-scale test set of application-based QP problems currently available. Building off of our base NASOQ solver we then develop and test two NASOQ variants against best, state-of-the-art available QP libraries – both commercial and open-source. Our two NASOQ-based methods each solve respectively 98.8% and 99.5% of problems across a range of requested accuracies from 10−3 to 10−9 with average speedups ranging from 1.7× to 24.8× over fastest competing methods. </p>
 
 <!--         <figure class="half" style="display:flex"  >
             <img class="image-size" src="index_files/failure_All-1.png">
             <img style="width:50%" src="index_files/perf_profile_e6.png">
         </figure> -->
 
-<!-- <img style="width:50%" src="index_files/failure_All-1.png" align="left" />
-<img style="width:50%" src="index_files/perf_profile_e6.png" /> -->
+
 
 <!--          <div class="row">
   <div class="column">
@@ -130,67 +128,12 @@
 
       </section>
 
-
-<section>
-  
-
-      <section id="whynasoq">
+<!--       <section id="gettingstarted">
         <div class="page-header">
-          <h1>Why NASOQ?</h1>
+          <h1>Getting Started</h1>
         </div>
 
-
-
- <div class="row1">
-    <div class="column">
-    <img src="index_files/accurate.jpg" alt="Mountains" style="width:50%">
-  </div>
-
-  <div class="column">
-    <h3> NASOQ is accurate</h3>
-    <p> NASOQ converges to all reasonable requested accuracy thresholds. NASOQ provides the lowest failure rate among esiting open-source and commercial solvers for a range of real QP problems.   </p>
-  </div>
-
-</div> 
-
- <div class="row2">
-  <div class="column">
-    <h3> NASOQ is fast</h3>
-    <p> NASOQ uses an efficient sparsity-oriented row modification algorithm (SOMOD) and a fast indefinite solver (LBL) enabling quick solve of intermediate indefinite linear system of equations arising along the QP solve.  </p>
-  </div>
-  <div class="column"  style="text-align:right">
-    <img src="index_files/fast.svg" alt="Mountains" style="width:50%">
-  </div>
-</div> 
-
-
- <div class="row1">
-    <div class="column">
-    <img src="index_files/versatile.png" alt="Mountains" style="width:50%">
-  </div>
-  <div class="column">
-    <h3> NASOQ is versatile</h3>
-    <p> NASOQ efficiently and accurately solves QP problems from a wide range of applications including contact simulation, shape deformation, model predictive control, model reconstruction and ... . </p>
-  </div>
-
-</div> 
-
- <div class="row2">
-    <div class="column" >
-    <h3> NASOQ is scalable</h3>
-    <p> NASOQ uses the sparsity pattern of the problem to efficiently solve QP problems with small to large number of variables and constraints. Problems from 10 to 100 thounds of variables and from 10 to thounds of linear constraints.  </p>
-  </div>
-    <div class="column"  style="text-align:right">
-    <img src="index_files/scalable.png" alt="Mountains" style="width:40%">
-  </div>
-
-
-</div> 
-
-
-</section>
-
-
+        <p> Sympiler can be built from source code. Please look at the <a href="https://github.com/sympiler/sympiler/blob/master/README.md"> README </a> file in the Sympiler repository for configuration instructions. The details of the Sympiler internals are explained in the SC17 <a href="https://dl.acm.org/citation.cfm?id=3126936&CFID=825768759&CFTOKEN=28284703">paper </a> and <a href="index_files/Sympiler_SC17_TALK.pdf"> presentation</a>. </p> -->
 
        
 
@@ -213,28 +156,59 @@
 -->
 
 
-      <section id="publications">
+      <section id="Resources">
         <div class="page-header">
-          <h1>Publications</h1>
+          <h1>Resources</h1>
         </div>
 
 <!--         <p>
           These academic publications explain how the symbolic information in sparse methods can guide the code generation phase in Sympiler.  
         </p> -->
 
+        <h3> Presentation</h3>
         <p>
-          <a href="siggraph20.html"><strong>NASOQ: Numerically Accurate Sparsity-Oriented QP Solver</strong></a>
-          <br>
-          <a href="http://www.cheshmi.cc/">Kazem Cheshmi</a>,
-          <a href="http://dannykaufman.io/">Danny M. Kaufman</a>,
-          <a href="http://people.csail.mit.edu/skamil/">Shoaib Kamil</a>,
-          <a href="https://www.cs.toronto.edu/~mmehride/">Maryam Mehri Dehnavi</a>
-          <br>
-          <em> SIGGRAPH 2020</em>
-<!--           <em>ACM Trans. Graph. 39, 4, Article 1 (July 2020), 17 pages. <a href="https://doi.org/10.
-1145/3386569.3392486">ACM DL</a>. <a href="index_files/nasoq_siggraph20.pdf"> <img border="0" alt="NASOQ draft" src="index_files/pdf_icon.png" width="25" height="15">  </a> </em>  -->  
+           
         </p>
-</section>
+
+        <h3> Supplemental Materials</h3>
+        <p>
+           
+        </p>
+
+    </section>
+
+    <section id="Code">
+        <div class="page-header">
+          <h1>Source code and data</h1>
+        </div>
+
+
+
+    </section>
+
+
+    <section id="bibtex">
+        <div class="page-header">
+          <h1>Bibtex</h1>
+        </div>
+@article{Cheshmi2020NASOQ,
+    author = {Cheshmi, Kazem and Kaufman, Danny M. and Kamil, Shoaib and Dehnavi, Maryam Mehri},
+    title = {NASOQ: Numerically Accurate Sparsity-Oriented QP Solver},
+    journal = {ACM Transactions on Graphics},
+    year = {2020},
+    volume = {39},
+    number = {4}
+} 
+      </section>
+
+    <section id="Results">
+        <div class="page-header">
+          <h1>Results</h1>
+        </div>
+
+        <img style="width:50%" src="index_files/failure_All-1.png" align="left" />
+<img style="width:50%" src="index_files/perf_profile_e6.png" />
+    </section>
 
 <!--         <p>
           <strong>ParSy: Inspection and Transformation of Sparse Matrix Computations for Parallelism</strong>
