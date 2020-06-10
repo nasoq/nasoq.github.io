@@ -1,0 +1,16 @@
+site_name: NASOQ Docs 
+theme: readthedocs
+pages:
+  - Overview: 'index.md'
+  - QP solver: 'solver.md'
+  - Indefinite solver: 'linear-solver.md'
+  - Getting Started: 'getting-started.md'
+  - Repository: 'repository.md'
+  - Examples: 'examples.md'
+  - Interfaces: 'interfaces.md'
+
+site_author: Kazem Cheshmi
+copyright: © Copyright 2020 Kazem Cheshmi 
+plugins:
+    - search
+    - pdf-export
