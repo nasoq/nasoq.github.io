@@ -1,16 +1,43 @@
 site_name: NASOQ Docs 
-theme: readthedocs
-pages:
+theme:
+  name: material
+nav:
   - Overview: 'index.md'
-  - QP solver: 'solver.md'
-  - Indefinite solver: 'linear-solver.md'
   - Getting Started: 'getting-started.md'
-  - Repository: 'repository.md'
+  - NASOQ QP solver: 'solver.md'
+  - LBL Indefinite solver: 'linear-solver.md'
+  - Sparse QP Repository: 'repository.md'
   - Examples: 'examples.md'
   - Interfaces: 'interfaces.md'
 
 site_author: Kazem Cheshmi
 copyright: © Copyright 2020 Kazem Cheshmi 
+repo_url: https://github.com/sympiler/nasoq
+repo_name: sympiler/nasoq
+site_dir: '../docs'
 plugins:
     - search
-    - pdf-export
+
+markdown_extensions:
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed
+  - pymdownx.tilde
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
+
