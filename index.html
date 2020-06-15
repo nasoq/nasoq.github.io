@@ -106,7 +106,14 @@
         </div>
         <p  align="center"> <video controls autoplay muted width="650" >
   <source src="index_files/nasoq_ffwd.mov" type="video/mp4" > </video>  </p>
-        <p align="justify"> NASOQ is a scalable and efficient Quadratic Programming solver that obtains solutions to requested accuracies. On an extensive benchmark NASOQ improves robustness, accuracy and speed over best state-of-the-art solvers. Visit our <a href="siggraph20.html"><strong>SIGGRAPH 2020</strong></a> paper for detsils. </p>
+        <p align="justify"> NASOQ is a scalable and efficient Quadratic Programming solver that obtains solutions for requested accuracies. Visit our <a href="siggraph20.html"><strong>SIGGRAPH 2020</strong></a> paper for detsils. </p>
+
+        <p>
+          We have built the largest dataset of sparse QP problems from real applications to show the efficiency of NASOQ compared to other solvers.  Visit the <a href="smp.html"><strong>Sparse Quadratic Programing repository</strong></a>  for problem descriptions.  
+        </p>
+        <p>
+          NASOQ is open-source, the code is <a href="https://github.com/sympiler/nasoq"><strong>here</strong></a>. The NASOQ Benchmark repository is used to compare the efficiency of NASOQ on numerous QP problems compared to competitive solvers for quadratic programs. 
+        </p>
 
 <!--         <figure class="half" style="display:flex"  >
             <img class="image-size" src="index_files/failure_All-1.png">
@@ -150,7 +157,7 @@
 
   <div class="column">
     <h3> NASOQ is accurate</h3>
-    <p> NASOQ converges to all reasonable requested accuracy thresholds. NASOQ provides the lowest failure rate among esiting open-source and commercial solvers for a range of real QP problems.   </p>
+    <p> NNASOQ converges to all reasonable requested accuracy thresholds. NASOQ provides the lowest failure rate amongst existing open-source and commercial solvers for a range of real QP problems.   </p>
   </div>
 
 </div> 
@@ -158,7 +165,7 @@
  <div class="row2">
   <div class="column">
     <h3> NASOQ is fast</h3>
-    <p> NASOQ uses an efficient sparsity-oriented row modification algorithm (SOMOD) and a fast indefinite solver (LBL) enabling quick solve of intermediate indefinite linear system of equations arising along the QP solve.  </p>
+    <p> NASOQ uses an efficient sparsity-oriented row modification algorithm (SOMOD) and an indefinite solver to provide fast solutions to the intermediate indefinite linear system of equations that appear throughout the QP solve process.  </p>
   </div>
   <div class="column"  style="text-align:right">
     <img src="index_files/fast.svg" alt="Mountains" style="width:50%">
@@ -172,7 +179,7 @@
   </div>
   <div class="column">
     <h3> NASOQ is versatile</h3>
-    <p> NASOQ efficiently and accurately solves QP problems from a wide range of applications including contact simulation, shape deformation, model predictive control, model reconstruction and ... . </p>
+    <p> NASOQ efficiently and accurately solves QP problems from a wide range of applications including contact simulation, shape deformation, model predictive control, model reconstruction and many more. </p>
   </div>
 
 </div> 
@@ -180,7 +187,7 @@
  <div class="row2">
     <div class="column" >
     <h3> NASOQ is scalable</h3>
-    <p> NASOQ uses the sparsity pattern of the problem to efficiently solve QP problems with small to large number of variables and constraints. Problems from 10 to 100 thounds of variables and from 10 to thounds of linear constraints.  </p>
+    <p> NASOQ leverages the problem sparsity pattern to efficiently solve QP problems with small as well as large number of variables and constraints. NASOQ can be used to solve QP problems within the range of 10 to 100 thousands of variables and with 10 to over several thousands of linear constraints.  </p>
   </div>
     <div class="column"  style="text-align:right">
     <img src="index_files/scalable.png" alt="Mountains" style="width:40%">
