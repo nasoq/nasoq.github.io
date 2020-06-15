@@ -96,10 +96,18 @@
     <div class="container" data-spy="scroll" data-target=".nav-collapse" data-offset="15">
       <section id="abstract">
         <div class="page-header">
-          <h1>Dataset Repository Description</h1>
+          <h1>Dataset Description</h1>
         </div>
         
-        <p align="justify"> </p>
+        <p align="justify">  We assemble a repository for sparse QP problems of different scales, most of which come from applications in animation, geometry processing, and simulation. Existing QP problem benchmarks are not large enough to stress-test large-scale QP solvers. To address this shortcoming,
+we gathered existing strictly-convex QP benchmark problems and
+also added a set of new QP problem instances mostly arising from computer graphics applications.</p>
+
+      <p class="justify"> Our repository includes QP instances from shape deformation, contact simulation, model reconstruction, and cloth simulation from computer graphics; model predictive control (MPC)  from robotics; and strictly-convex QP problems from the Maros-Mészáros repository. The number of variables ranges from 50–114309 and the number of constraints ranges from 20–10k.  </p>
+
+      <p class="justify"> Our dataset is growing and we will provide a description for all problems. The current dataset can be found from <a href="https://www.dropbox.com/s/7i4tt115t00wcpl/SMP_Repository_SIGGRAPH20.tgz?dl=0"><strong>here</strong></a>.  </p>
+
+      <p class="justify"> We have also created a code repository including the setup for running all other QP solvers that NASOQ is compared to so far. The code is available from  <a href="https://github.com/sympiler/nasoq-benchmarks" target="_blank"><strong>here</strong></a>. </p>
 
 <!--         <figure class="half" style="display:flex"  >
             <img class="image-size" src="index_files/failure_All-1.png">

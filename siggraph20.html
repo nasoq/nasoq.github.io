@@ -79,11 +79,8 @@
 <div class="container" data-spy="scroll" data-target=".nav-collapse" data-offset="15">
       <section id="overview">
         <p  align="center"><img src="index_files/banner.png" alt="NASOQ" width="100%" height=auto></p>
-        <p> The symbolic initialization phase of SoMod starts with creating an inclusive matrix, shown in Figure 1b from the matrices in Figure 1a which are inputs
-to a QP problem where A is the equality constraint matrix and C is the inequality matrix. The inclusive matrix is then permuted with a fill-reducing permutation to compute the sparsity pattern of the L-factor with
-minimum number of fill-ins. The sparsity pattern of the L-factor of the inclusive matrix in Figure 1b is computed and shown in Figure 1c. Boundaries of
-Supernodes are shown with dotted lines and supernode numbers are illustrated below the L-factor. The corresponding inclusive (assembly) tree of the L-factor
-in Figure 1c is shown in Figure 1d.</p>
+        <p> The sparsity-oriented row modification (SoMoD) algorithm in NASOQ leverages the sparsity pattern of the objective and constraint matrices in the QP problem to build an inclusive matrix that enables efficient sparse row modification. Figure (a) shows the sparsity pattern of the objective matrix <i>H</i> and constraints matrices <i>A</i> and <i>C </i> in QP problem with general form of \(1 \over 2 x^THx + q^Tx s.t Ax=b, Cx \le d  \) where <i>b,d</i> and <i>q </i> are vectors. Figure (b) shows the inclusive matrix created from matrices in Figure (a). The inclusive matrix is then permuted with a fill-reducing permutation to compute the sparsity pattern of the L-factor with minimum number of fill-ins. The sparsity pattern of the inclusive matrix’s L-factor  in Figure (b) is computed and shown in Figure (c). Boundaries of supernodes are shown with dotted lines and supernode numbers are shown below the L-factor. The corresponding inclusive (assembly) tree of the L-factor in Figure (c) is shown in Figure (d). The inclusive assembly tree along with L-factor are used to efficiently modify successive KKT systems during solving a QP problem. 
+</p>
       </section>
 
     <div class="container" data-spy="scroll" data-target=".nav-collapse" data-offset="15">
@@ -91,7 +88,7 @@ in Figure 1c is shown in Figure 1d.</p>
 <!--         <div class="page-header">
           <h1>Paper</h1>
         </div> -->
-        <a href=""><strong>Paper (PDF)</strong></a>
+        <a href="index_files/nasoq_siggraph20.pdf" target="_blank"><strong>Paper (PDF)</strong></a>
       </section>
     </div>
 
@@ -169,10 +166,8 @@ in Figure 1c is shown in Figure 1d.</p>
         <p>
            
         </p> -->
-
-        <h3> Supplemental Materials</h3>
         <p>
-           
+           <a href="index_files/nasoq_sup.pdf" target="_blank"><strong>Supplemental Materials:</strong></a>  include the setup for libraries and also the speedup breakdown per class of application. 
         </p>
 
     </section>
@@ -181,7 +176,11 @@ in Figure 1c is shown in Figure 1d.</p>
         <div class="page-header">
           <h1>Source code and data</h1>
         </div>
+        <p>  <a href="https://github.com/sympiler/nasoq" target="_blank"><strong>NASOQ source code</strong></a> </p>
 
+        <p>  <a href="https://github.com/sympiler/nasoq-benchmarks" target="_blank"><strong>NASOQ Benchmark code</strong></a> </p>
+
+        <p>  <a href="https://www.dropbox.com/s/7i4tt115t00wcpl/SMP_Repository_SIGGRAPH20.tgz?dl=0" target="_blank"><strong>QP Dataset</strong></a> </p>
 
 
     </section>
