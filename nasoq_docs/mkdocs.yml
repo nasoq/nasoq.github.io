@@ -3,11 +3,11 @@ theme:
   name: material
 nav:
   - Overview: 'index.md'
-  - Getting Started: 'getting-started.md'
-  - NASOQ QP solver: 'solver.md'
-  - LBL Indefinite solver: 'linear-solver.md'
+  - NASOQ algorithm: 'solver.md'
+  - Getting Started with NASOQ: 'getting-started-nasoq.md'
+  - LBL algorithm: 'linear-solver.md'
+  - Getting Started with LBL: 'getting-started-lbl.md'
   - Sparse QP Repository: 'repository.md'
-  - Examples: 'examples.md'
   - Interfaces: 'interfaces.md'
 
 site_author: Kazem Cheshmi

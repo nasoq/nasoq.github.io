@@ -14,9 +14,13 @@ NASOQ is:
 * **Scalable:** NASOQ uses the sparsity pattern of the problem to efficiently solve QP problems with small to large number of variables and constraints. Problems from 10 to 100 thounds of variables and from 10 to thounds of linear constraints.
 
 ## Citing us
+If you are using NASOQ please cite the NASOQ paper or support us by putting star in the NASOQ github repository.
 
- *@article{Cheshmi2020NASOQ, author = {Cheshmi, Kazem and Kaufman, Danny M. and Kamil, Shoaib and Dehnavi, Maryam Mehri}, title = {NASOQ: Numerically Accurate Sparsity-Oriented QP Solver}, journal = {ACM Transactions on Graphics}, year = {2020}, volume = {39}, number = {4} }*
+```
+ @article{Cheshmi2020NASOQ, author = {Cheshmi, Kazem and Kaufman, Danny M. and Kamil, Shoaib and Dehnavi, Maryam Mehri}, title = {NASOQ: Numerically Accurate Sparsity-Oriented QP Solver}, journal = {ACM Transactions on Graphics}, year = {2020}, volume = {39}, number = {4} 
+ ```
 
+We are keen to hear your success stories with NASOQ. We are also ready to help you to fit NASOQ into your needs. Please contact us.
 
 ## Credits
 The people have been involved in the developement of NASOQ:
