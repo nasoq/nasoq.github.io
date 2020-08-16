@@ -190,8 +190,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
-      Getting Started
+    <a href="../solver/" title="NASOQ algorithm" class="md-nav__link">
+      NASOQ algorithm
     </a>
   </li>
 
@@ -202,8 +202,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../solver/" title="NASOQ QP solver" class="md-nav__link">
-      NASOQ QP solver
+    <a href="../getting-started-nasoq/" title="Getting Started with NASOQ" class="md-nav__link">
+      Getting Started with NASOQ
     </a>
   </li>
 
@@ -214,8 +214,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../linear-solver/" title="LBL Indefinite solver" class="md-nav__link">
-      LBL Indefinite solver
+    <a href="../linear-solver/" title="LBL algorithm" class="md-nav__link">
+      LBL algorithm
     </a>
   </li>
 
@@ -226,8 +226,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../repository/" title="Sparse QP Repository" class="md-nav__link">
-      Sparse QP Repository
+    <a href="../getting-started-lbl/" title="Getting Started with LBL" class="md-nav__link">
+      Getting Started with LBL
     </a>
   </li>
 
@@ -238,8 +238,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../examples/" title="Examples" class="md-nav__link">
-      Examples
+    <a href="../repository/" title="Sparse Mathematical Programming (SMP) Repository" class="md-nav__link">
+      Sparse Mathematical Programming (SMP) Repository
     </a>
   </li>
 
@@ -360,8 +360,14 @@
                 
                   <h1>Interfaces</h1>
                 
-                <h2 id="eigen-interface">Eigen interface</h2>
+                <p>We are trying to build different interface to ease the use of NASOQ in different frameworks/languages. </p>
+<h2 id="eigen-interface">Eigen interface</h2>
+<p>An Eigen interface is provided in the NASOQ repository in <code>eigen_interface</code>. The interface needs Eigen to be installed beforehand. 
+There are demos, <code>eigen_nasoq_driver.cpp</code> and <code>eigen_lbl_driver.cpp"</code> that show how NASOQ and LBL can be called from Eigen.
+You need to only include <code>#include "lbl_eigen.h"</code> for using LBL and <code>#include "nasoq_eigen.h"</code> for using NASOQ in your Eigen code. </p>
 <h2 id="matlab-interface">Matlab interface</h2>
+<p>The NASOQ Matlab interface needs Libigl and Eigen as well as other dependencies that NASOQ has (see <a href="../getting-started-nasoq/">getting started with NASOQ</a>). 
+A simple manual for installing the Matlab interface is provide in <code>nasoq/matlab</code>.</p>
                 
               
               
@@ -380,7 +386,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../examples/" title="Examples" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../repository/" title="Sparse Mathematical Programming (SMP) Repository" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -389,7 +395,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Examples
+                Sparse Mathematical Programming (SMP) Repository
               </div>
             </div>
           </a>

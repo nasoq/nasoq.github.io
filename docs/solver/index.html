@@ -17,7 +17,7 @@
     
     
       
-        <title>NASOQ QP solver - NASOQ Docs</title>
+        <title>NASOQ algorithm - NASOQ Docs</title>
       
     
     
@@ -78,7 +78,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              NASOQ QP solver
+              NASOQ algorithm
             
           </span>
         </div>
@@ -188,18 +188,6 @@
       
       
 
-
-  <li class="md-nav__item">
-    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
-      Getting Started
-    </a>
-  </li>
-
-    
-      
-      
-      
-
   
 
 
@@ -209,14 +197,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        NASOQ QP solver
+        NASOQ algorithm
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="NASOQ QP solver" class="md-nav__link md-nav__link--active">
-      NASOQ QP solver
+    <a href="./" title="NASOQ algorithm" class="md-nav__link md-nav__link--active">
+      NASOQ algorithm
     </a>
     
       
@@ -273,8 +261,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../linear-solver/" title="LBL Indefinite solver" class="md-nav__link">
-      LBL Indefinite solver
+    <a href="../getting-started-nasoq/" title="Getting Started with NASOQ" class="md-nav__link">
+      Getting Started with NASOQ
     </a>
   </li>
 
@@ -285,8 +273,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../repository/" title="Sparse QP Repository" class="md-nav__link">
-      Sparse QP Repository
+    <a href="../linear-solver/" title="LBL algorithm" class="md-nav__link">
+      LBL algorithm
     </a>
   </li>
 
@@ -297,8 +285,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../examples/" title="Examples" class="md-nav__link">
-      Examples
+    <a href="../getting-started-lbl/" title="Getting Started with LBL" class="md-nav__link">
+      Getting Started with LBL
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../repository/" title="Sparse Mathematical Programming (SMP) Repository" class="md-nav__link">
+      Sparse Mathematical Programming (SMP) Repository
     </a>
   </li>
 
@@ -386,7 +386,7 @@
                   
                 
                 
-                  <h1>NASOQ QP solver</h1>
+                  <h1>NASOQ algorithm</h1>
                 
                 <h2 id="algorithm-overview">Algorithm overview</h2>
 <p>NASOQ focuses on the solution of convex quadratic programming problems to find the linearly constrained minimizers of quadratic energies. In full generality our problem then is 
@@ -398,6 +398,24 @@
 where the unknown minimizer <span><span class="MathJax_Preview">x \in \mathbb{R}^n</span><script type="math/tex">x \in \mathbb{R}^n</script></span> is constrained by linear equality constraints <span><span class="MathJax_Preview">A x=b</span><script type="math/tex">A x=b</script></span> and inequality constraints <span><span class="MathJax_Preview">Cx\leq d</span><script type="math/tex">Cx\leq d</script></span>. 
 Note that in many cases we may have only inequality or equality constraints. However, in the following, without loss of generality, we consider the full mixed case. 
 Here the symmetric matrix <span><span class="MathJax_Preview">H</span><script type="math/tex">H</script></span> is, either by construction or standard user regularization, a positive-definite matrix thus the QP is strictly convex.</p>
+<p>NASOQ is an active-set QP solver based on Goldfarb-Idnani (GI) [Goldfarb and Idnani, 1983] strategy. 
+Active-set methods start with a feasible solution and keep a running set of proposed active inequality constraints <span><span class="MathJax_Preview">\mathcal{W}</span><script type="math/tex">\mathcal{W}</script></span> to reach the optimal solution while maintaining feasibility conditions. 
+Active-set methods are then either primal-feasible, preserving the primal-feasibility condition or else are dual-feasible, preserving the non-negativity condition. 
+GI is a dual-feasible active-set approach and so enables direct and inexpensive initialization.  </p>
+<p>NASOQ begins by initializing an empty active-set proposal, <span><span class="MathJax_Preview">\mathcal{W} = \emptyset</span><script type="math/tex">\mathcal{W} = \emptyset</script></span> with zero dual variables, <span><span class="MathJax_Preview">z_0 = 0</span><script type="math/tex">z_0 = 0</script></span>.
+The resulting initial KKT system to solve is then the indefinite linear system, </p>
+<div>
+<div class="MathJax_Preview">\begin{bmatrix} H &amp; A^T\\ A &amp; 0 \end{bmatrix} \begin{bmatrix} x_0\\ y_0 \end{bmatrix} = \begin{bmatrix} -q\\ b \end{bmatrix}</div>
+<script type="math/tex; mode=display">\begin{bmatrix} H & A^T\\ A & 0 \end{bmatrix} \begin{bmatrix} x_0\\ y_0 \end{bmatrix} = \begin{bmatrix} -q\\ b \end{bmatrix}</script>
+</div>
+<p>Then, each successive iteration of NASOQ improves the last iterate's solution by updating the active-set proposal <span><span class="MathJax_Preview">\mathcal{W}</span><script type="math/tex">\mathcal{W}</script></span> and so the corresponding active-set constraint matrix <span><span class="MathJax_Preview">C_{\mathcal{W}}</span><script type="math/tex">C_{\mathcal{W}}</script></span> and the right-hand side constraint vector <span><span class="MathJax_Preview">c_{w}</span><script type="math/tex">c_{w}</script></span>. The GI method updates the active set by only adding one or removing one constraint in each successive iteration. Here <span><span class="MathJax_Preview">w</span><script type="math/tex">w</script></span> is the activated constraint.
+The next descent direction for the QP is then determined by solving the updated KKT system ,</p>
+<div>
+<div class="MathJax_Preview">  \begin{bmatrix} H &amp; A^T &amp; C_{\mathcal{W}}^T\\ A &amp; 0 &amp; 0 \\C_{\mathcal{W}} &amp; 0 &amp; 0 \\ \end{bmatrix} \begin{bmatrix} \Delta x \\ \Delta y \\ \Delta z \\ \end{bmatrix} = \begin{bmatrix} c_{w} \\ 0 \\ 0 \\ \end{bmatrix}</div>
+<script type="math/tex; mode=display">  \begin{bmatrix} H & A^T & C_{\mathcal{W}}^T\\ A & 0 & 0 \\C_{\mathcal{W}} & 0 & 0 \\ \end{bmatrix} \begin{bmatrix} \Delta x \\ \Delta y \\ \Delta z \\ \end{bmatrix} = \begin{bmatrix} c_{w} \\ 0 \\ 0 \\ \end{bmatrix}</script>
+</div>
+<p>The dual and primal variables of the next iteration are then updated by finding step lengths along the computed descent directions. The step lengths ensure that the activated constraint becomes primal-feasible and all dual variables remain dual-feasible. 
+Thus, in each iteration, both the dual and primal variables corresponding to the constraints in the active set are both non-negative and primal-feasible. </p>
 <h2 id="variants">Variants</h2>
 <p>NASOQ has two variants: NASOQ-Fixed and NASOQ-Tuned and each of these two variants individually offer a different balance in the trade-off between efficiency and accuracy for larger scale problems. 
 A key feature of NASOQ is that in our construction of the linear system solver, i.e., LBL and the row modification, i.e., SoMoD we expose three parameters with direct and intuitive interpretations that enable us to balance efficiency against accuracy for different applications and problem
@@ -419,12 +437,64 @@ the solve phase;</p>
  NASOQ-Tuned uses a range of reasonable settings for these three parameters known as a priori, to perform a rapid sweep for improved accuracy. The setting for activating NASOQ-Tuned is:
  <code>nasoq-&gt;variant = Tuned</code>.</p>
 <h2 id="termination-criteria">Termination criteria</h2>
-<p>The termination criteria in NASOQ are four conditions that are known as KKT conditions and listed below:
-$$
-where <span><span class="MathJax_Preview">\epsilon</span><script type="math/tex">\epsilon</script></span> is the accuracy threshold and is determined by the user. A lower accuracy typically needs more iterations. The termination criteria in different solver might differ depending how the accuracy threshold is defined. Some solvers use a relative criteria, i.e. normalizing the requested accuracy with a problem-related norm and some other supports both. It is important to know because of this, the definition of accurate in different solvers are different. 
-We found absolute criteria do not often lead to false convergence and thus depending on the application nature, an optimistic accuracy threshold would work well. Relative tolerance however, require selecting a very small threshold to ensure accuracy for different problems. To set the accuracy threshold in NASOQ, you may use the following:
+<p>The termination criteria in NASOQ are four conditions that are listed below:</p>
+<ul>
+<li>
+<p>Primal-feasibility: <span><span class="MathJax_Preview">\Big( (Ax-b)^T, (\max(\textbf{0},Cx-d))^T \Big)^T \| &lt; \epsilon_f</span><script type="math/tex">\Big( (Ax-b)^T, (\max(\textbf{0},Cx-d))^T \Big)^T \| < \epsilon_f</script></span></p>
+</li>
+<li>
+<p>Stationarity: <span><span class="MathJax_Preview">|Hx + q + A^{T}y + C^{T}z\| &lt; \epsilon_s</span><script type="math/tex">|Hx + q + A^{T}y + C^{T}z\| < \epsilon_s</script></span></p>
+</li>
+<li>
+<p>Complementarity: <span><span class="MathJax_Preview">|z \odot (Cx-d)\| &lt; \epsilon_c</span><script type="math/tex">|z \odot (Cx-d)\| < \epsilon_c</script></span>, Here <span><span class="MathJax_Preview">\odot</span><script type="math/tex">\odot</script></span> is the Hadamard (element-wise) product.</p>
+</li>
+<li>
+<p>Non-negativity:<span><span class="MathJax_Preview">|\min(\textbf{0},z)\| &lt; \epsilon_n</span><script type="math/tex">|\min(\textbf{0},z)\| < \epsilon_n</script></span></p>
+</li>
+</ul>
+<p>We design NASOQ and analyze QP methods on their ability to drive all four of these measures (<span><span class="MathJax_Preview">\infty</span><script type="math/tex">\infty</script></span>-norm) below a common, maximum error threshold accuracy: <span><span class="MathJax_Preview">\epsilon \geq \max(\epsilon_f,\epsilon_s,\epsilon_c,\epsilon_n)</span><script type="math/tex">\epsilon \geq \max(\epsilon_f,\epsilon_s,\epsilon_c,\epsilon_n)</script></span>. 
+While necessary accuracies for each of the four measures certainly change per application, a desirable goal for a general-purpose QP algorithm is to solve every reasonable problem to any requested accuracy. 
+Here we design for general-purpose QP problems and so do not predict a priori what measures are most important. Thus we evaluate fitness by asking each solve to drive all measures below <span><span class="MathJax_Preview">\epsilon</span><script type="math/tex">\epsilon</script></span>. To set the accuracy threshold in NASOQ, you may use the following:
 <code>nasoq-&gt;eps = 1e-3;</code></p>
 <h2 id="settings">Settings</h2>
+<p>The three different parameters, <em>max_iter</em> that exist in NASOQ often shows a significant effect on the performance and accuracy of the solver. Also, requesting a more accurate solution, i.e., a lower termination criteria or <code>eps</code> often leads to much more number of iterations and thus slower convergence time. Especially that the termination criteria in NASOQ is an absolute criteria and the difference in performance is more visible.
+NASOQ has some pre-defined variants, i.e., fixed and tuned, that is designed conservatively for the lowest failure rate. However, a customized setting can lead to a better performance if requirements of the application is known. 
+Here we provide a few suggestions based on our experience with working with different real applications:</p>
+<table>
+  <thead>
+    <tr>
+      <th> Setting Property </th>
+      <th> NASOQ Variant </th>
+      <th> max_iter </th>
+      <th> stop_tol </th>
+      <th> diag_perturb </th>
+      <th> eps </th>
+      <th> Example Applications</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Low accuracy and fast</td>
+      <td>predet</td>
+      <td>0</td>
+      <td>1e-15</td>
+      <td>1e-9</td>
+      <td>1e-3</td>
+      <td>Geometry processing, Model reconstruction</td>
+    </tr>
+    <tr>
+      <td>accurate enough</td>
+      <td>predet</td>
+      <td>1</td>
+      <td>1e-15</td>
+      <td>1e-9</td>
+      <td>1e-6</td>
+      <td>Contact simulations, Control</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <code>predet</code> variant of NASOQ is a the variant that takes the input settings determined by the user. If you are not sure, you may start with fixed variant of NASOQ.</p>
                 
               
               
@@ -443,7 +513,7 @@ We found absolute criteria do not often lead to false convergence and thus depen
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../getting-started/" title="Getting Started" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href=".." title="Overview" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -452,19 +522,19 @@ We found absolute criteria do not often lead to false convergence and thus depen
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Getting Started
+                Overview
               </div>
             </div>
           </a>
         
         
-          <a href="../linear-solver/" title="LBL Indefinite solver" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../getting-started-nasoq/" title="Getting Started with NASOQ" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                LBL Indefinite solver
+                Getting Started with NASOQ
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

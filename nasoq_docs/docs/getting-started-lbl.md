@@ -73,4 +73,3 @@ For details about inputs, outputs, and settings of LBL please see the [LBL docum
 Finally, you will build your project with NASOQ by emitting `make`. 
 
 You can also use LBL inside the NASOQ source tree. One example of using LBL is shown in the repository in `nasoq/eigen_interface`.  Choosing between in-source or out-source depend on your project settings. 
-

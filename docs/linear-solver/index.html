@@ -17,7 +17,7 @@
     
     
       
-        <title>LBL Indefinite solver - NASOQ Docs</title>
+        <title>LBL algorithm - NASOQ Docs</title>
       
     
     
@@ -50,7 +50,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lbl-linear-solver" class="md-skip">
+        <a href="#algorithm-overview" class="md-skip">
           Skip to content
         </a>
       
@@ -78,7 +78,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              LBL Indefinite solver
+              LBL algorithm
             
           </span>
         </div>
@@ -190,8 +190,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../getting-started/" title="Getting Started" class="md-nav__link">
-      Getting Started
+    <a href="../solver/" title="NASOQ algorithm" class="md-nav__link">
+      NASOQ algorithm
     </a>
   </li>
 
@@ -202,8 +202,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../solver/" title="NASOQ QP solver" class="md-nav__link">
-      NASOQ QP solver
+    <a href="../getting-started-nasoq/" title="Getting Started with NASOQ" class="md-nav__link">
+      Getting Started with NASOQ
     </a>
   </li>
 
@@ -221,14 +221,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        LBL Indefinite solver
+        LBL algorithm
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="LBL Indefinite solver" class="md-nav__link md-nav__link--active">
-      LBL Indefinite solver
+    <a href="./" title="LBL algorithm" class="md-nav__link md-nav__link--active">
+      LBL algorithm
     </a>
     
       
@@ -245,8 +245,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#lbl-linear-solver" class="md-nav__link">
-    LBL linear solver
+  <a href="#algorithm-overview" class="md-nav__link">
+    Algorithm overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    Settings
   </a>
   
 </li>
@@ -264,8 +271,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../repository/" title="Sparse QP Repository" class="md-nav__link">
-      Sparse QP Repository
+    <a href="../getting-started-lbl/" title="Getting Started with LBL" class="md-nav__link">
+      Getting Started with LBL
     </a>
   </li>
 
@@ -276,8 +283,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../examples/" title="Examples" class="md-nav__link">
-      Examples
+    <a href="../repository/" title="Sparse Mathematical Programming (SMP) Repository" class="md-nav__link">
+      Sparse Mathematical Programming (SMP) Repository
     </a>
   </li>
 
@@ -318,8 +325,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#lbl-linear-solver" class="md-nav__link">
-    LBL linear solver
+  <a href="#algorithm-overview" class="md-nav__link">
+    Algorithm overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    Settings
   </a>
   
 </li>
@@ -344,10 +358,32 @@
                   
                 
                 
-                  <h1>LBL Indefinite solver</h1>
+                  <h1>LBL algorithm</h1>
                 
-                <h2 id="lbl-linear-solver">LBL linear solver</h2>
-<p>As discussed in XX, NASOQ solves </p>
+                <h2 id="algorithm-overview">Algorithm overview</h2>
+<p>LBL is an algorithm for factorizing a sparse indefinite linear system of equations. 
+LBL solves <span><span class="MathJax_Preview">Hx=q</span><script type="math/tex">Hx=q</script></span> for <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> where <span><span class="MathJax_Preview">q</span><script type="math/tex">q</script></span> is a dense vector and <span><span class="MathJax_Preview">H</span><script type="math/tex">H</script></span> is a sparse symmetric indefinite matrix. 
+In order to solve the system <span><span class="MathJax_Preview">Hx = q</span><script type="math/tex">Hx = q</script></span>, LBL applies LDL factorization to decompose the matrix <span><span class="MathJax_Preview">H</span><script type="math/tex">H</script></span> into</p>
+<div>
+<div class="MathJax_Preview">H = P_{fill} P_{S} (LDL^{T} + E) P_{S}^{T} P_{fill}^{T}</div>
+<script type="math/tex; mode=display">H = P_{fill} P_{S} (LDL^{T} + E) P_{S}^{T} P_{fill}^{T}</script>
+</div>
+<p>where <span><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span> is a blocked diagonal symmetric matrix (due to our use of Bunch-Kaufman pivoting[schenk2006fast]), <span><span class="MathJax_Preview">L</span><script type="math/tex">L</script></span> is a sparse lower triangular matrix, <span><span class="MathJax_Preview">E</span><script type="math/tex">E</script></span> is a diagonal perturbation matrix (necessary to avoid zero diagonals, which can cause instabilities, <span><span class="MathJax_Preview">P_{fill}</span><script type="math/tex">P_{fill}</script></span> is a fill-reducing ordering (such as METIS[karypis1995metis]), and <span><span class="MathJax_Preview">P_S</span><script type="math/tex">P_S</script></span> is reordering due to pivoting. Given this factorization of the matrix, LBL then uses <span><span class="MathJax_Preview">L</span><script type="math/tex">L</script></span> and <span><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span> along with <span><span class="MathJax_Preview">q</span><script type="math/tex">q</script></span> (the right-hand side) to quickly compute the solution <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> via triangular solve and an iterative refinement method.</p>
+<p>The overall process of the factorization in LBL closely follows that of standard sparse linear system solvers.  For efficient factorization, the sparsity pattern of <span><span class="MathJax_Preview">H</span><script type="math/tex">H</script></span> is analyzed during <em>symbolic analysis</em>. Symbolic analysis uses the sparsity pattern of <span><span class="MathJax_Preview">H</span><script type="math/tex">H</script></span> to construct <em>symbolic information</em>, which consists of the fill-reducing ordering <span><span class="MathJax_Preview">P_{fill}</span><script type="math/tex">P_{fill}</script></span> and the sparsity pattern of <span><span class="MathJax_Preview">L</span><script type="math/tex">L</script></span>.  Symbolic information guides the <em>numeric factorization</em>, which operates on the actual numeric values of <span><span class="MathJax_Preview">H</span><script type="math/tex">H</script></span> to compute the nonzero values of <span><span class="MathJax_Preview">L</span><script type="math/tex">L</script></span> and <span><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span>. Matrices <span><span class="MathJax_Preview">L</span><script type="math/tex">L</script></span> and <span><span class="MathJax_Preview">D</span><script type="math/tex">D</script></span> are then used to find <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> with a lower triangular system solve and blocked diagonal solver. </p>
+<p>In addition to solving a standalone linear system of equations, LBL also supports row modification when the sparsity pattern of changes are known ahead of time. The LBL mode that supports row modification is used in NASOQ and is called sparsity oriented row modification (SoMoD). Here we only discuss the interface LBL as a standalone solver. </p>
+<h2 id="settings">Settings</h2>
+<p>The three parametes that are explaine in the NASOQ algorithm () is common with LBL. So the three important parametrs of </p>
+<ul>
+<li>
+<p><em>max_iter:</em> the maximum number of refinement iterations, GMRES for incrementally improving the solution of a linear system after the solve phase;</p>
+</li>
+<li>
+<p><em>stop_tol:</em> the threshold defining the upper bound for the residual accuracy of the linear system during the refinement phase;</p>
+</li>
+<li>
+<p><em>diag_perturb:</em> value added to zero-entry diagonals of the matrix to stabilize LBL.</p>
+</li>
+</ul>
                 
               
               
@@ -366,7 +402,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../solver/" title="NASOQ QP solver" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../getting-started-nasoq/" title="Getting Started with NASOQ" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -375,19 +411,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                NASOQ QP solver
+                Getting Started with NASOQ
               </div>
             </div>
           </a>
         
         
-          <a href="../repository/" title="Sparse QP Repository" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../getting-started-lbl/" title="Getting Started with LBL" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Sparse QP Repository
+                Getting Started with LBL
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

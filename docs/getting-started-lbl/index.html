@@ -17,7 +17,7 @@
     
     
       
-        <title>Getting Started - NASOQ Docs</title>
+        <title>Getting Started with LBL - NASOQ Docs</title>
       
     
     
@@ -78,7 +78,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Getting Started
+              Getting Started with LBL
             
           </span>
         </div>
@@ -188,6 +188,42 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href="../solver/" title="NASOQ algorithm" class="md-nav__link">
+      NASOQ algorithm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../getting-started-nasoq/" title="Getting Started with NASOQ" class="md-nav__link">
+      Getting Started with NASOQ
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../linear-solver/" title="LBL algorithm" class="md-nav__link">
+      LBL algorithm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
@@ -197,14 +233,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Getting Started
+        Getting Started with LBL
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="Getting Started" class="md-nav__link md-nav__link--active">
-      Getting Started
+    <a href="./" title="Getting Started with LBL" class="md-nav__link md-nav__link--active">
+      Getting Started with LBL
     </a>
     
       
@@ -227,13 +263,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#command-line-interface" class="md-nav__link">
-    Command-line interface
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -247,44 +276,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../solver/" title="NASOQ QP solver" class="md-nav__link">
-      NASOQ QP solver
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../linear-solver/" title="LBL Indefinite solver" class="md-nav__link">
-      LBL Indefinite solver
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../repository/" title="Sparse QP Repository" class="md-nav__link">
-      Sparse QP Repository
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../examples/" title="Examples" class="md-nav__link">
-      Examples
+    <a href="../repository/" title="Sparse Mathematical Programming (SMP) Repository" class="md-nav__link">
+      Sparse Mathematical Programming (SMP) Repository
     </a>
   </li>
 
@@ -331,13 +324,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#command-line-interface" class="md-nav__link">
-    Command-line interface
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -350,7 +336,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/sympiler/nasoq/edit/master/docs/getting-started.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/sympiler/nasoq/edit/master/docs/getting-started-lbl.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -358,29 +344,73 @@
                   
                 
                 
-                  <h1>Getting Started</h1>
+                  <h1>Getting Started with LBL</h1>
                 
-                <h2 id="c-api">C++ API</h2>
-<p>NASOQ is a header-only library and does not need to be compiled. To use it in your code, you need to include <code>&lt;nasoq.h&gt;</code> in your code and add <code>NASOQ</code> to the list of libraries.
-NASOQ needs METIS and MKL BLAS Libraries as prerequisites. Paths to these two libraries shoule be specifies by setting variables XX and XX as shown:
-<div class="highlight"><pre><span></span><code>cmake -DXX -DXX<span class="o">=</span> -DCMAKE_BULD_TYPE<span class="o">=</span>release .. 
+                <p>LBL is a part of NASOQ repository and is similarly a header only library and do not need installation. Here we explain how LBL C++ API can be used to solve your sparse indefinite linear systems in your code.</p>
+<h2 id="c-api">C++ API</h2>
+<p>An example for how to use LBL in your code is provided in <code>nasoq/examples</code> and here we explain the example step by step.
+We assume your project is somewhere like in <code>nasoq\examples\</code>. </p>
+<p>First you need to clone the NASOQ repository in your project folder:
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> nasoq/examples/
+git clone https://github.com/sympiler/nasoq
 </code></pre></div></p>
-<p>One example of using nasoq is shown in the repository in <code>nasoq/eigen_interface</code>. </p>
-<p>After installing you can use it as below:
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;nasoq.h&gt;</span><span class="cp"></span>
+<p>After cloning NASOQ, you need to modify the CMakeLists of your project file to include NASOQ dependencies. Project <code>LBL_Test</code> in the CMakeLists of <code>nasoq/examples/</code>  shows the components that you need to add to your cmake file. 
+After modifying the cmake file of your project, you need to ensure the library dependencies of NASOQ are installed. 
+NASOQ needs METIS and MKL BLAS Libraries as prerequisites.<br />
+If installation paths of these libraries are in the system path, cmake should be able to handle dependences. If not, you need to set cmake variables as shown below: 
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> where/cloned/nasoq
+mkdir build
+<span class="nb">cd</span> build
+cmake -DMKL_ROOT_PATH<span class="o">=</span>path/to/intel -DMETIS_ROOT_PATH<span class="o">=</span>path/to//metis-5.1.0/build/Linux-x86_64/  -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ..
+</code></pre></div></p>
+<p>After setting up dependencies, You can call LBL solver to solve your linear system by including <code>&lt;linear_solver_wrapper.h&gt;</code> and preparing its inputs as shown in the following code. </p>
+<p><div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&quot;linear_solver_wrapper.h&quot;</span><span class="cp"></span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
-<span class="p">...</span>
+<span class="cm">/*</span>
+<span class="cm"> * Solving Hx = q</span>
+<span class="cm"> * H is a sparse matrix stored in CSC format</span>
+<span class="cm"> * q is a dense array</span>
+<span class="cm"> */</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]){</span>
+
+ <span class="c1">/// Declaring input matrices</span>
+ <span class="c1">// allocate</span>
+    <span class="p">...</span>
+ <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span><span class="p">;</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span><span class="p">;</span>
+
+ <span class="n">Hp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">Hp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">Hp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+ <span class="n">Hi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="n">Hi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+ <span class="n">Hx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span><span class="n">Hx</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+
+ <span class="k">auto</span> <span class="o">*</span><span class="n">H</span> <span class="o">=</span> <span class="k">new</span> <span class="n">nasoq</span><span class="o">::</span><span class="n">CSC</span><span class="p">;</span> <span class="n">H</span><span class="o">-&gt;</span><span class="n">nzmax</span> <span class="o">=</span> <span class="n">nnzH</span><span class="p">;</span> <span class="n">H</span><span class="o">-&gt;</span><span class="n">ncol</span><span class="o">=</span> <span class="n">H</span><span class="o">-&gt;</span><span class="n">nrow</span> <span class="o">=</span><span class="n">sizeH</span><span class="p">;</span>
+ <span class="n">H</span><span class="o">-&gt;</span><span class="n">p</span> <span class="o">=</span> <span class="n">Hp</span><span class="p">;</span> <span class="n">H</span><span class="o">-&gt;</span><span class="n">i</span> <span class="o">=</span> <span class="n">Hi</span><span class="p">;</span> <span class="n">H</span><span class="o">-&gt;</span><span class="n">x</span> <span class="o">=</span> <span class="n">Hx</span><span class="p">;</span> <span class="n">H</span><span class="o">-&gt;</span><span class="n">stype</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">/// Solving the linear system</span>
+ <span class="k">auto</span> <span class="o">*</span><span class="n">lbl</span> <span class="o">=</span> <span class="k">new</span> <span class="n">nasoq</span><span class="o">::</span><span class="n">SolverSettings</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="n">q</span><span class="p">);</span>
+ <span class="n">lbl</span><span class="o">-&gt;</span><span class="n">ldl_variant</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+ <span class="n">lbl</span><span class="o">-&gt;</span><span class="n">req_ref_iter</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+ <span class="n">lbl</span><span class="o">-&gt;</span><span class="n">solver_mode</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+ <span class="n">lbl</span><span class="o">-&gt;</span><span class="n">reg_diag</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">9</span><span class="p">);</span>
+ <span class="n">lbl</span><span class="o">-&gt;</span><span class="n">symbolic_analysis</span><span class="p">();</span>
+ <span class="n">lbl</span><span class="o">-&gt;</span><span class="n">numerical_factorization</span><span class="p">();</span>
+ <span class="kt">double</span> <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="n">lbl</span><span class="o">-&gt;</span><span class="n">solve_only</span><span class="p">();</span>
+
+
+ <span class="c1">/// Printing results</span>
+ <span class="c1">// expected x={-2,-2};</span>
+ <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Solution: &quot;</span><span class="p">;</span>
+ <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">sizeH</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">&quot;,&quot;</span><span class="p">;</span>
+ <span class="p">}</span>
+ <span class="c1">/// Free memory</span>
+ <span class="p">...</span>
 
 <span class="p">}</span>
 </code></pre></div>
-For details about inputs, outputs, and settings of nasoq please see the <a href="../solver/">NASOQ document page</a>.</p>
-<h2 id="command-line-interface">Command-line interface</h2>
-<p>In addition to library API, a terminal interface is also provided. The terminal interface can be launched by calling <code>NASOQ-BIN</code> with an input QP problem. The list of switches, which can be seen by commanding <code>NASOQ-BIN -h</code>, is shown below:
-<div class="highlight"><pre><span></span><code>-i : 
--o :
-</code></pre></div>
-For details of switches please check <a href="../solver/">NASOQ document page</a>.</p>
+For details about inputs, outputs, and settings of LBL please see the <a href="../linear-solver/">LBL document page</a>.
+Finally, you will build your project with NASOQ by emitting <code>make</code>. </p>
+<p>You can also use LBL inside the NASOQ source tree. One example of using LBL is shown in the repository in <code>nasoq/eigen_interface</code>.  Choosing between in-source or out-source depend on your project settings. </p>
                 
               
               
@@ -399,7 +429,7 @@ For details of switches please check <a href="../solver/">NASOQ document page</a
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href=".." title="Overview" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../linear-solver/" title="LBL algorithm" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -408,19 +438,19 @@ For details of switches please check <a href="../solver/">NASOQ document page</a
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Overview
+                LBL algorithm
               </div>
             </div>
           </a>
         
         
-          <a href="../solver/" title="NASOQ QP solver" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../repository/" title="Sparse Mathematical Programming (SMP) Repository" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                NASOQ QP solver
+                Sparse Mathematical Programming (SMP) Repository
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">

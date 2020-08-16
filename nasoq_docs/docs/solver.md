@@ -68,6 +68,46 @@ Here we design for general-purpose QP problems and so do not predict a priori wh
 
 
 ## Settings
+The three different parameters, *max_iter* that exist in NASOQ often shows a significant effect on the performance and accuracy of the solver. Also, requesting a more accurate solution, i.e., a lower termination criteria or `eps` often leads to much more number of iterations and thus slower convergence time. Especially that the termination criteria in NASOQ is an absolute criteria and the difference in performance is more visible.
+NASOQ has some pre-defined variants, i.e., fixed and tuned, that is designed conservatively for the lowest failure rate. However, a customized setting can lead to a better performance if requirements of the application is known. 
+Here we provide a few suggestions based on our experience with working with different real applications:
+
+<table>
+  <thead>
+    <tr>
+      <th> Setting Property </th>
+      <th> NASOQ Variant </th>
+      <th> max_iter </th>
+      <th> stop_tol </th>
+      <th> diag_perturb </th>
+      <th> eps </th>
+      <th> Example Applications</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Low accuracy and fast</td>
+      <td>predet</td>
+      <td>0</td>
+      <td>1e-15</td>
+      <td>1e-9</td>
+      <td>1e-3</td>
+      <td>Geometry processing, Model reconstruction</td>
+    </tr>
+    <tr>
+      <td>accurate enough</td>
+      <td>predet</td>
+      <td>1</td>
+      <td>1e-15</td>
+      <td>1e-9</td>
+      <td>1e-6</td>
+      <td>Contact simulations, Control</td>
+    </tr>
+  </tbody>
+</table>
+
+The `predet` variant of NASOQ is a the variant that takes the input settings determined by the user. If you are not sure, you may start with fixed variant of NASOQ.
+
 
 
 
