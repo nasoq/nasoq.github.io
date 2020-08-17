@@ -19,6 +19,7 @@ plugins:
     - search
 
 markdown_extensions:
+  - footnotes
   - pymdownx.arithmatex
   - pymdownx.betterem:
       smart_enable: all
