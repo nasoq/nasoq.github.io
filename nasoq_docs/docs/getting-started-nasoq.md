@@ -33,11 +33,11 @@ int main(){
  ...
  /// Inputs
  q[0] = -4; q[1] = -4;
-
+ // H should be the lower part of a symmetric matrix
  Hp[0]=0;Hp[1]=1;Hp[2]=2;
  Hi[0]=0;Hi[1]=1;
  Hx[0]=2;Hx[1]=2;
-
+ // A and C matrices are general matrices
  Cp[0]=0;Cp[1]=4;Cp[2]=8;
  Ci[0]=0;Ci[1]=1;Ci[2]=2;Ci[3]=3;
  Ci[4]=0;Ci[5]=1;Ci[6]=2;Ci[7]=3;
@@ -79,7 +79,7 @@ int main(){
  ...
 }
 ```
-For details about inputs, outputs, and settings of NASOQ, please see the [NASOQ document page](solver.md).
+For details about inputs, outputs, and settings of NASOQ, please see the [NASOQ document page](solver.md). 
 Finally, you will build your project with NASOQ by emitting the `make` command. 
 
 You can also use NASOQ inside the source tree. One example of using nasoq is shown in the `nasoq/eigen_interface` directory.  Choosing between in-source or out-source depends on your project settings. 
