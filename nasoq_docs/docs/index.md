@@ -2,7 +2,7 @@
 NASOQ$^1$ is a scalable and efficient Quadratic Programming solver that obtains solutions to requested accuracies. Also, the NASOQ library includes a linear system solver for indefinite systems which, is named LBL.
 NASOQ is tested for an extensive number of QP problems from real applications that are also shared and are accessible from this repository. 
 
-*<span style="font-size:0.75em;">1. NASOQ /nʌzoʊk/ is a Persian/Indian/Urdu name that means delicate and indicates accuracy.</span>*
+*<span style="font-size:0.75em;">1. NASOQ /nʌzoʊk/ is a Persian/Indian/Urdu word that means delicate and indicates accuracy.</span>*
 ## Why NASOQ?
 NASOQ is:
 
