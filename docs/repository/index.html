@@ -428,12 +428,52 @@
                 
                 <h2 id="applications">Applications</h2>
 <p>We assemble a repository for sparse QP problems of different scales, most of which come from applications in animation, geometry processing, and simulation. An overview of the repository is provided in the <a href="https://nasoq.github.io/smp.html">SMP page</a>.
-Here we explain the storage format that is used in the Sparse Mathematical Programming (SMP) repository and also its corresponding I/O routines. We also explain how SMP is used in NASOQ benchmark to fairly compare different QP solvers across SMP repository problems. </p>
+Here we explain the storage format that is used in the Sparse Mathematical Programming repository (SMP) and also, the corresponding I/O routines of the format. We also explain how SMP is used in NASOQ benchmark to fairly compare different QP solvers across SMP problems. </p>
 <h2 id="smp-storage-format">SMP storage format</h2>
 <p>Sparse Mathematical Programming (SMP) format aims for providing a unified and readable format that is compatible with existing sparse matrix formats such as matrix market format. 
-SMP uses YAML format to serialize the matrices of a QP problem into single unified file in a readable format. <br />
+SMP uses the YAML format to serialize the matrices of a QP problem into a single unified file in a readable format. <br />
 An example SMP format is shown below:</p>
-<div class="highlight"><pre><span></span><code>
+<div class="highlight"><pre><span></span><code><span class="l l-Scalar l-Scalar-Plain">Description&quot;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
+  <span class="no">Sparse Mathematical Programming Repository</span>
+  <span class="no">ID = 00000</span>
+  <span class="no">category = Control</span>
+  <span class="no">application = example</span>
+  <span class="no">name = test01</span>
+  <span class="no">group = test</span>
+  <span class="no">source = </span>
+  <span class="no">author = Kazem Cheshmi</span>
+  <span class="no">date = 06/20</span>
+<span class="s">&quot;Fixed&quot;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
+  <span class="no">0</span>
+<span class="s">&quot;Inequality&quot;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
+  <span class="no">%%MatrixMarket matrix coordinate real symmetric</span>
+  <span class="no">3 2 4</span>
+  <span class="no">1 1 10</span>
+  <span class="no">2 1 1</span>
+  <span class="no">1 2 -1</span>
+  <span class="no">3 2 1</span>
+<span class="s">&quot;Inequality</span><span class="nv"> </span><span class="s">l-bounds&quot;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
+  <span class="no">%%MatrixMarket matrix array real general</span>
+  <span class="no">3 1</span>
+  <span class="no">10</span>
+  <span class="no">2</span>
+  <span class="no">-50</span>
+<span class="s">&quot;Inequality</span><span class="nv"> </span><span class="s">u-bounds&quot;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
+  <span class="no">%%MatrixMarket matrix array real general</span>
+  <span class="no">3 1</span>
+  <span class="no">inf</span>
+  <span class="no">10</span>
+  <span class="no">10</span>
+<span class="s">&quot;Linear&quot;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
+  <span class="no">%%MatrixMarket matrix array real general</span>
+  <span class="no">2 1</span>
+  <span class="no">0</span>
+  <span class="no">0</span>
+<span class="s">&quot;Quadratic&quot;</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
+  <span class="no">%%MatrixMarket matrix coordinate real symmetric</span>
+  <span class="no">2 2 2</span>
+  <span class="no">1 1 2</span>
+  <span class="no">2 2 2</span>
 </code></pre></div>
 
 <p>As shown a QP problem in the SMP format is stored in the general form of:
@@ -446,7 +486,7 @@ that is more compressed than the general form that NASOQ supports which we call 
 \min_x \quad \frac{1}{2} x^THx + q^Tx \quad \text{s.t.}
 \quad  Ax=b, \quad  C  x\leq d
 \end{align}
-ans also more compressed than other general forms such as what we we call <em>general bounded form (bounded)</em> and is shown below:</p>
+and also more compressed than another general form that we we call <em>general bounded form (bounded)</em> and is illustrated below:</p>
 <div>
 <div class="MathJax_Preview">\begin{align} 
  \label{eq:qp}
@@ -459,7 +499,7 @@ l' \leq  C''  x\leq u'
 l' \leq  C''  x\leq u'
 \end{align}</script>
 </div>
-<p>These three representations lead to the same optimal results however they are different in terms of storage requirements and also the number of iterations that one solver might need to solve the problem.</p>
+<p>These three representations lead to the same optimal solution however, they are different in terms of storage requirements and also the number of iterations that one solver might need to solve the problem.</p>
 <h3 id="smp-conversion">SMP conversion</h3>
 <p>We developed a repository for converting different representations of a QP problem, i.e., IE and Bounded forms to SMP and also from SMP to others. The repository does not have any dependency and to install:
 <div class="highlight"><pre><span></span><code>git clone https://github.com/sympiler/smp-format
@@ -469,16 +509,16 @@ mkdir build
 cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ..
 make
 </code></pre></div></p>
-<p>After building there will be three drivers, i.e., <code>ie2smp</code>, <code>bounded2smp</code>, and <code>smp-convertor</code> are available.  The <code>ie2smp</code> driver takes all matrices of an IE format which are stored in matrix market format and generates an SMP format.
-The <code>bounded2smp</code> driver takes all matrices of a bounded format which are again stored in matrix market format and generates an SMP format.
-The <code>smp-convertor</code> shows an example of how SMP format is used an intermediate format to convert every two formats together. </p>
+<p>After building, three drivers, i.e., <code>ie2smp</code>, <code>bounded2smp</code>, and <code>smp-convertor</code> will be available.  The <code>ie2smp</code> driver takes all matrices of a QP problem in IE format which are stored in matrix market format and generates an SMP format.
+The <code>bounded2smp</code> driver takes all matrices of a QP instance in the bounded format which are again stored in matrix market format and generates an SMP format.
+The <code>smp-convertor</code> shows an example of how SMP format is used as an intermediate format to convert every two formats together. </p>
 <h2 id="nasoq-benchmark">NASOQ benchmark</h2>
 <p>We also developed a unified framework to run all solvers with their settings for the problems in the SMP repository. The installation of the benchmark depends on the solvers that are added and their dependencies. The instructions for installing the benchmark is provided in the <a href="https://github.com/sympiler/nasoq-benchmarks">nasoq-benchmarks</a>.</p>
 <h3 id="adding-a-new-solver">Adding a new solver</h3>
 <p>Adding a new solver to the benchmark is easy. </p>
-<p>The <em>first</em> step is to write a driver for the solver that takes an SMP format and generates the format that is needed for the solver. Three examples for OSQP, NASOQ, and Gurobi are provided in <a href="https://github.com/sympiler/nasoq-benchmarks/tree/master/drivers">drivers subdirectory</a>. As explained, SMP repository provides support for different QP formats so they can be easily used here.</p>
-<p>The <em>second</em> step is to update the cmake file in the <code>drivers</code> subdirectory by adding a new project that builds the driver for the new solver.</p>
-<p>The <em>third</em> step is to add a line to the <code>run_all.sh</code> script as shown below:
+<p>The <em>first</em> step is to write a driver for the solver that takes an SMP format and generates the inputs that are needed for the solver. Three examples for OSQP, NASOQ, and Gurobi are provided in <a href="https://github.com/sympiler/nasoq-benchmarks/tree/master/drivers">drivers subdirectory</a>. As explained, the SMP repository provides support for different QP formats so they can be easily used here.</p>
+<p>The <em>second</em> step is to update the CMake file in the <code>drivers</code> subdirectory by adding a new project that builds the driver for the new solver.</p>
+<p>The <em>third</em> step is to add a line to the <code>run_all.sh</code> script, as shown below:
 <div class="highlight"><pre><span></span><code><span class="nb">echo</span> <span class="s2">&quot;Running [The name of the new solver] ...&quot;</span>
 bash scripts/NASOQ_bench.sh <span class="nv">$BUILDIR</span>/drivers/<span class="o">[</span>New-solver-bin<span class="o">]</span> <span class="nv">$DATASET</span> <span class="nv">$eps</span> <span class="s2">&quot;-v [if it has a variant]&quot;</span>&gt; logs/new-solver-e<span class="si">${</span><span class="nv">eps</span><span class="si">}</span>.csv
 </code></pre></div></p>

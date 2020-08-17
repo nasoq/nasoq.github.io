@@ -346,24 +346,24 @@
                 
                   <h1>Getting Started with LBL</h1>
                 
-                <p>LBL is a part of NASOQ repository and is similarly a header only library and do not need installation. Here we explain how LBL C++ API can be used to solve your sparse indefinite linear systems in your code.</p>
+                <p>LBL is a part of the NASOQ repository and is similarly a header-only library and does not need installation. Here we explain how LBL C++ API can be used to solve your sparse indefinite linear systems in your code.</p>
 <h2 id="c-api">C++ API</h2>
-<p>An example for how to use LBL in your code is provided in <code>nasoq/examples</code> and here we explain the example step by step.
+<p>An example of how to use LBL in your code is provided in the<code>nasoq/examples</code> directory, and here we explain the example step by step.
 We assume your project is somewhere like in <code>nasoq\examples\</code>. </p>
 <p>First you need to clone the NASOQ repository in your project folder:
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> nasoq/examples/
 git clone https://github.com/sympiler/nasoq
 </code></pre></div></p>
-<p>After cloning NASOQ, you need to modify the CMakeLists of your project file to include NASOQ dependencies. Project <code>LBL_Test</code> in the CMakeLists of <code>nasoq/examples/</code>  shows the components that you need to add to your cmake file. 
-After modifying the cmake file of your project, you need to ensure the library dependencies of NASOQ are installed. 
+<p>After cloning NASOQ, you need to modify the CMakeLists of your project file to include NASOQ dependencies. Project <code>LBL_Test</code> in the CMakeLists of the <code>nasoq/examples/</code> directory  shows the components that you need to add to your CMake file. 
+After modifying the CMake file of your project, you need to ensure the library dependencies of NASOQ are installed. 
 NASOQ needs METIS and MKL BLAS Libraries as prerequisites.<br />
-If installation paths of these libraries are in the system path, cmake should be able to handle dependences. If not, you need to set cmake variables as shown below: 
+If the installation paths of these libraries are in the system path, CMake should be able to handle dependencies. If not, you need to set CMake variables as shown below: 
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> where/cloned/nasoq
 mkdir build
 <span class="nb">cd</span> build
 cmake -DMKL_ROOT_PATH<span class="o">=</span>path/to/intel -DMETIS_ROOT_PATH<span class="o">=</span>path/to//metis-5.1.0/build/Linux-x86_64/  -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ..
 </code></pre></div></p>
-<p>After setting up dependencies, You can call LBL solver to solve your linear system by including <code>&lt;linear_solver_wrapper.h&gt;</code> and preparing its inputs as shown in the following code. </p>
+<p>After setting up dependencies, You can call LBL solver to solve your linear system by including <code>&lt;linear_solver_wrapper.h&gt;</code> and preparing its inputs, as shown in the following code. </p>
 <p><div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&quot;linear_solver_wrapper.h&quot;</span><span class="cp"></span>
 
 <span class="cm">/*</span>
@@ -408,9 +408,9 @@ cmake -DMKL_ROOT_PATH<span class="o">=</span>path/to/intel -DMETIS_ROOT_PATH<spa
 
 <span class="p">}</span>
 </code></pre></div>
-For details about inputs, outputs, and settings of LBL please see the <a href="../linear-solver/">LBL document page</a>.
-Finally, you will build your project with NASOQ by emitting <code>make</code>. </p>
-<p>You can also use LBL inside the NASOQ source tree. One example of using LBL is shown in the repository in <code>nasoq/eigen_interface</code>.  Choosing between in-source or out-source depend on your project settings. </p>
+For details about inputs, outputs, and settings of LBL, please see the <a href="../linear-solver/">LBL document page</a>.
+Finally, you will build your project with NASOQ by emitting the <code>make</code> command. </p>
+<p>You can also use LBL inside the NASOQ source tree. One example of using LBL is shown in the repository in the <code>nasoq/eigen_interface</code> directory.  Choosing between in-source or out-source depends on your project settings. </p>
                 
               
               
