@@ -44,7 +44,7 @@ the solve phase;
 - *diag_perturb:* value added to zero-entry diagonals of the KKT matrix to stabilize LBL and row modification in SoMod.
 
 
-NASOQ-Fixed works well across the board without changing a default setting. To use NASOQ-Fixed, you can set ``` nasoq->variant = Fixed```. 
+NASOQ-Fixed works well across the board without changing a default setting. To use NASOQ-Fixed, you can set ``` nasoq->variant = Fixed```.  NASOQ-Fixed settings are slightly different from the settings in the siggraph2020 paper. The `max_iter` parameter in the new settings is decremented by one so it runs faster.
  NASOQ-Tuned uses a range of reasonable settings for these three parameters known as a priori, to perform a rapid sweep for improved accuracy. The setting for activating NASOQ-Tuned is:
  ``` nasoq->variant = Tuned``` (This mode has not been included in the API yet). 
 
