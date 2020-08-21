@@ -248,6 +248,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#return-value" class="md-nav__link">
+    Return value
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -366,6 +373,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#return-value" class="md-nav__link">
+    Return value
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -435,7 +449,7 @@ the solve phase;</p>
 </ul>
 <p>NASOQ-Fixed works well across the board without changing a default setting. To use NASOQ-Fixed, you can set <code>nasoq-&gt;variant = Fixed</code>. 
  NASOQ-Tuned uses a range of reasonable settings for these three parameters known as a priori, to perform a rapid sweep for improved accuracy. The setting for activating NASOQ-Tuned is:
- <code>nasoq-&gt;variant = Tuned</code>.</p>
+ <code>nasoq-&gt;variant = Tuned</code> (This mode has not been included in the API yet). </p>
 <h2 id="termination-criteria">Termination criteria</h2>
 <p>The termination criteria in NASOQ are four conditions that are listed below:</p>
 <ul>
@@ -455,10 +469,10 @@ the solve phase;</p>
 <p>We design NASOQ and analyze QP methods on their ability to drive all four of these measures (<span><span class="MathJax_Preview">\infty</span><script type="math/tex">\infty</script></span>-norm) below a common, maximum error threshold accuracy: <span><span class="MathJax_Preview">\epsilon \geq \max(\epsilon_f,\epsilon_s,\epsilon_c,\epsilon_n)</span><script type="math/tex">\epsilon \geq \max(\epsilon_f,\epsilon_s,\epsilon_c,\epsilon_n)</script></span>. 
 While necessary accuracies for each of the four measures certainly change per application, a desirable goal for a general-purpose QP algorithm is to solve every reasonable problem to any requested accuracy. 
 Here we design for general-purpose QP problems and so do not predict a priori what measures are most important. Thus we evaluate fitness by asking each solve to drive all measures below <span><span class="MathJax_Preview">\epsilon</span><script type="math/tex">\epsilon</script></span>. To set the accuracy threshold in NASOQ, you may use the following:
-<code>nasoq-&gt;eps = 1e-3;</code></p>
+<code>nasoq-&gt;eps_abs = 1e-3;</code></p>
 <h2 id="settings">Settings</h2>
-<p>The three different parameters, <em>max_iter, stop_tol, diag_perturb</em> that exist in NASOQ, often show a significant effect on the performance and accuracy of the solver. Also, requesting a more accurate solution, i.e., lower termination criteria or <code>eps</code> often leads to much more number of iterations and thus slower convergence time. 
-NASOQ has some pre-defined variants, i.e., fixed and tuned, that is designed conservatively for the lowest failure rate. However, a customized setting can lead to better performance if the requirements of the application are known. 
+<p>The three different parameters, <em>max_iter, stop_tol, diag_perturb</em> that exist in NASOQ, often show a significant effect on the performance and accuracy of the solver. Also, requesting a more accurate solution, i.e., lower termination criteria or <code>eps_abs</code> often leads to much more number of iterations and thus slower convergence time. 
+NASOQ has some pre-defined variants, i.e., fixed and tuned. NASOQ-Tuned is designed conservatively for the lowest failure rate. NASOQ-Fixed often provides a reasonable balance between balance and failure-rate. However, a customized setting can lead to better performance if the requirements of the application are known. 
 Here we provide a few suggestions based on our experience with working with different real applications:</p>
 <table>
   <thead>
@@ -468,14 +482,14 @@ Here we provide a few suggestions based on our experience with working with diff
       <th> max_iter </th>
       <th> stop_tol </th>
       <th> diag_perturb </th>
-      <th> eps </th>
+      <th> eps_abs </th>
       <th> Example Applications</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Low accuracy and fast</td>
-      <td>predet</td>
+      <td>PREDET</td>
       <td>0</td>
       <td>1e-15</td>
       <td>1e-9</td>
@@ -484,7 +498,7 @@ Here we provide a few suggestions based on our experience with working with diff
     </tr>
     <tr>
       <td>accurate enough</td>
-      <td>predet</td>
+      <td>PREDET</td>
       <td>1</td>
       <td>1e-15</td>
       <td>1e-9</td>
@@ -494,7 +508,14 @@ Here we provide a few suggestions based on our experience with working with diff
   </tbody>
 </table>
 
-<p>The <code>predet</code> variant of NASOQ is a  variant that takes the input settings determined by the user. If you are not sure, you may start with the fixed variant of NASOQ.</p>
+<p>The <code>PREDET</code> variant of NASOQ is a  variant that takes the input settings determined by the user. If you are not sure, you may start with the fixed variant of NASOQ.</p>
+<p>You can also set the maximum number of NASOQ solver iterations by setting <code>max_iter_nas</code> . After NASOQ's iterations reach this number, it terminates and returns the last solution. </p>
+<h2 id="return-value">Return value</h2>
+<p>NASOQ solver return value has four states:</p>
+<p>0:<code>Infeasible</code> the problem is unbounded.</p>
+<p>1:<code>Optimal</code> When primal-feasibility, stationary, and non-negativity are satisfied.</p>
+<p>2:<code>Inaccurate</code> only primal-feasibility is satisfied. </p>
+<p>3:<code>NotConverged</code> None of the termination criteria are satisfied. </p>
                 
               
               

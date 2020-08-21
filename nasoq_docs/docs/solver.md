@@ -46,7 +46,7 @@ the solve phase;
 
 NASOQ-Fixed works well across the board without changing a default setting. To use NASOQ-Fixed, you can set ``` nasoq->variant = Fixed```. 
  NASOQ-Tuned uses a range of reasonable settings for these three parameters known as a priori, to perform a rapid sweep for improved accuracy. The setting for activating NASOQ-Tuned is:
- ``` nasoq->variant = Tuned```.
+ ``` nasoq->variant = Tuned``` (This mode has not been included in the API yet). 
 
 
 ## Termination criteria
@@ -63,13 +63,13 @@ The termination criteria in NASOQ are four conditions that are listed below:
 We design NASOQ and analyze QP methods on their ability to drive all four of these measures ($\infty$-norm) below a common, maximum error threshold accuracy: $\epsilon \geq \max(\epsilon_f,\epsilon_s,\epsilon_c,\epsilon_n)$. 
 While necessary accuracies for each of the four measures certainly change per application, a desirable goal for a general-purpose QP algorithm is to solve every reasonable problem to any requested accuracy. 
 Here we design for general-purpose QP problems and so do not predict a priori what measures are most important. Thus we evaluate fitness by asking each solve to drive all measures below $\epsilon$. To set the accuracy threshold in NASOQ, you may use the following:
-```nasoq->eps = 1e-3; ```
+```nasoq->eps_abs = 1e-3; ```
 
 
 
 ## Settings
-The three different parameters, *max_iter, stop_tol, diag_perturb* that exist in NASOQ, often show a significant effect on the performance and accuracy of the solver. Also, requesting a more accurate solution, i.e., lower termination criteria or `eps` often leads to much more number of iterations and thus slower convergence time. 
-NASOQ has some pre-defined variants, i.e., fixed and tuned, that is designed conservatively for the lowest failure rate. However, a customized setting can lead to better performance if the requirements of the application are known. 
+The three different parameters, *max_iter, stop_tol, diag_perturb* that exist in NASOQ, often show a significant effect on the performance and accuracy of the solver. Also, requesting a more accurate solution, i.e., lower termination criteria or `eps_abs` often leads to much more number of iterations and thus slower convergence time. 
+NASOQ has some pre-defined variants, i.e., fixed and tuned. NASOQ-Tuned is designed conservatively for the lowest failure rate. NASOQ-Fixed often provides a reasonable balance between balance and failure-rate. However, a customized setting can lead to better performance if the requirements of the application are known. 
 Here we provide a few suggestions based on our experience with working with different real applications:
 
 <table>
@@ -80,14 +80,14 @@ Here we provide a few suggestions based on our experience with working with diff
       <th> max_iter </th>
       <th> stop_tol </th>
       <th> diag_perturb </th>
-      <th> eps </th>
+      <th> eps_abs </th>
       <th> Example Applications</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Low accuracy and fast</td>
-      <td>predet</td>
+      <td>PREDET</td>
       <td>0</td>
       <td>1e-15</td>
       <td>1e-9</td>
@@ -96,7 +96,7 @@ Here we provide a few suggestions based on our experience with working with diff
     </tr>
     <tr>
       <td>accurate enough</td>
-      <td>predet</td>
+      <td>PREDET</td>
       <td>1</td>
       <td>1e-15</td>
       <td>1e-9</td>
@@ -106,7 +106,23 @@ Here we provide a few suggestions based on our experience with working with diff
   </tbody>
 </table>
 
-The `predet` variant of NASOQ is a  variant that takes the input settings determined by the user. If you are not sure, you may start with the fixed variant of NASOQ.
+The `PREDET` variant of NASOQ is a  variant that takes the input settings determined by the user. If you are not sure, you may start with the fixed variant of NASOQ.
+
+You can also set the maximum number of NASOQ solver iterations by setting `max_iter_nas` . After NASOQ's iterations reach this number, it terminates and returns the last solution. 
+
+
+## Return value
+
+NASOQ solver return value has four states:
+
+0:`Infeasible` the problem is unbounded.
+
+1:`Optimal` When primal-feasibility, stationary, and non-negativity are satisfied.
+
+2:`Inaccurate` only primal-feasibility is satisfied. 
+
+3:`NotConverged` None of the termination criteria are satisfied. 
+
 
 
 
