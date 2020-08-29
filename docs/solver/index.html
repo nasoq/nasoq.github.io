@@ -37,6 +37,10 @@
     
     
       
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-42245837-3","nasoq.github.io"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview")})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
     
     
   </head>
@@ -447,7 +451,7 @@ the solve phase;</p>
 <p><em>diag_perturb:</em> value added to zero-entry diagonals of the KKT matrix to stabilize LBL and row modification in SoMod.</p>
 </li>
 </ul>
-<p>NASOQ-Fixed works well across the board without changing a default setting. To use NASOQ-Fixed, you can set <code>nasoq-&gt;variant = Fixed</code>. 
+<p>NASOQ-Fixed works well across the board without changing a default setting. To use NASOQ-Fixed, you can set <code>nasoq-&gt;variant = Fixed</code>.  NASOQ-Fixed settings are slightly different from the settings in the siggraph2020 paper. The <code>max_iter</code> parameter in the new settings is decremented by one so it runs faster.
  NASOQ-Tuned uses a range of reasonable settings for these three parameters known as a priori, to perform a rapid sweep for improved accuracy. The setting for activating NASOQ-Tuned is:
  <code>nasoq-&gt;variant = Tuned</code> (This mode has not been included in the API yet). </p>
 <h2 id="termination-criteria">Termination criteria</h2>

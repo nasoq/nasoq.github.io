@@ -12,6 +12,7 @@ nav:
 
 site_author: Kazem Cheshmi
 copyright: © Copyright 2020 Kazem Cheshmi 
+google_analytics: ['UA-42245837-3', 'nasoq.github.io']
 repo_url: https://github.com/sympiler/nasoq
 repo_name: sympiler/nasoq
 site_dir: '../docs'
