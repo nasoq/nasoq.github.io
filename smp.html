@@ -21,6 +21,28 @@
 }
     </style>
 
+    <style type="text/css">
+  .TFtable{
+    width:75%; 
+    border-collapse:collapse; 
+  }
+  .TFtable td{ 
+    padding:7px; border:#4e95f4 1px solid;
+  }
+  /* provide some minimal visual accomodation for IE8 and below */
+  .TFtable tr{
+    background: #b8d1f3;
+  }
+  /*  Define the background color for all the ODD background rows  */
+  .TFtable tr:nth-child(odd){ 
+    background: white;
+  }
+  /*  Define the background color for all the EVEN background rows  */
+  .TFtable tr:nth-child(even){
+    background: #dae5f4;
+  }
+</style>
+
     <!-- Font Awesome icons -->
     <link href="index_files/font-awesome.css" rel="stylesheet">
 
@@ -107,41 +129,261 @@
 
       <p class="justify"> Our repository includes QP instances from shape deformation, contact simulation, model reconstruction, and cloth simulation from computer graphics; model predictive control (MPC) from robotics; and strictly-convex QP problems from the Maros-Mészáros repository. The number of variables ranges from 50–114309, and the number of constraints ranges from 20–10k.  </p>
 
-      <p class="justify"> Our QP dataset is growing, the current dataset can be found from <a href="https://www.dropbox.com/s/hxhelt273ajh00w/SMP_Repository_SIGGRAPH20.tgz?dl=0"><strong>here</strong></a>.  </p>
+      <p class="justify"> Our QP dataset is growing, the current dataset can be downloaded from <a href="https://www.dropbox.com/s/hxhelt273ajh00w/SMP_Repository_SIGGRAPH20.tgz?dl=0"><strong>here</strong></a>.  </p>
 
       <p class="justify"> We have also created a code repository, including the setup for running all other QP solvers that NASOQ is compared to so far. The code is available from  <a href="https://github.com/sympiler/nasoq-benchmarks" target="_blank"><strong>here</strong></a>. </p>
 
       <p class="justify"> The instructions on how to work with SMP format and how to set the benchmark repository is available <a href="https://nasoq.github.io/docs/repository/" target="_blank"><strong>here</strong></a>.   </p>
-<!-- <table>
+
+      <p class="justify"> The table below shows a detailed description of different groups of QP problems in the SMP repository:</strong></a>.   </p>
+
+    <table class="TFtable">
   <thead>
     <tr>
-      <th> Name </th>
+      <th> Group Name </th>
       <th> # of Problems </th>
       <th> # of variables </th>
       <th> # of constraints </th>
       <th> # of nonzeros </th>
       <th> Application</th>
+      <th> Source </th>
+      <th> Download Link</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>Low accuracy and fast</td>
-      <td>predet</td>
-      <td>0</td>
-      <td>1e-15</td>
-      <td>1e-9</td>
-      <td>Geometry processing, Model reconstruction</td>
+      <td> <!-- Group Name-->Cube</td>
+      <td> <!--# of Problems-->523</td>
+      <td> <!--# of variables-->24</td>
+      <td> <!--# of constraints-->4</td>
+      <td> <!--# of nonzeros-->219</td>
+      <td> <!--Application-->Contact Simulation</td>
+      <td> <!--Source--><a href="https://github.com/dilevin/GAUSS"> GAUSS Library </a></td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1DPsUDJmtKNGtHnQJ9G8WiIDcnljVovu7" >Cube</a></td>
     </tr>
     <tr>
-      <td>accurate enough</td>
-      <td>predet</td>
-      <td>1</td>
-      <td>1e-15</td>
-      <td>1e-15</td>
-      <td>Contact simulations, Control</td>
+      <td> <!-- Group Name-->Beam</td>
+      <td> <!--# of Problems-->162</td>
+      <td> <!--# of variables-->1572</td>
+      <td> <!--# of constraints-->11-141</td>
+      <td> <!--# of nonzeros-->25662</td>
+      <td> <!--Application-->Contact Simulation</td>
+      <td> <!--Source--><a href="https://github.com/dilevin/GAUSS"> GAUSS Library </a></td>
+      <td><a href="https://docs.google.com/uc?id=1Q83GZF9SFGPoyMZZU9Fzj45xNAzD4bYr&export=download" >Beam</a></td>
     </tr>
+    <tr>
+      <td> <!-- Group Name-->Lamb</td>
+      <td> <!--# of Problems-->38</td>
+      <td> <!--# of variables-->2403-4806</td>
+      <td> <!--# of constraints-->10-1389</td>
+      <td> <!--# of nonzeros-->37998-75996</td>
+      <td> <!--Application-->Contact Simulation</td>
+      <td> <!--Source--><a href="https://github.com/dilevin/GAUSS"> GAUSS Library </a></td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1t960DnD6hqCoOrDNLUPI9RfPgsNpA41v">Lamb</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->AddingDepth</td>
+      <td> <!--# of Problems-->6</td>
+      <td> <!--# of variables-->19359-39249</td>
+      <td> <!--# of constraints-->859-2809</td>
+      <td> <!--# of nonzeros-->71550-146568</td>
+      <td> <!--Application-->Model Construction</td>
+      <td> <!--Source--><a href="https://dcgi.fel.cvut.cz/home/sykorad/ink-and-ray++.html"> Ink-and-Ray </a> </td>
+      <td><a href="https://drive.google.com/uc?export=download&id=19wuOk59KygeDUv3iHi0Ptgm572WpZYz1" >AddingDepth</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->Bunny</td>
+      <td> <!--# of Problems-->6</td>
+      <td> <!--# of variables-->16227-32454</td>
+      <td> <!--# of constraints-->51-1167</td>
+      <td> <!--# of nonzeros-->301230-602460</td>
+      <td> <!--Application-->Contact Simulation</td>
+      <td> <!--Source--><a href="https://github.com/dilevin/GAUSS"> GAUSS Library </a></td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1jcwC_oKXQ4fYqSLLPifbFAZo1x8v6hiy">Bunny</a></td>
+    </tr>
+    <tr>
+      <td>alligator</td>
+      <td>9</td>
+      <td>928</td>
+      <td>928</td>
+      <td>8379</td>
+      <td>Image deformation</td>
+      <td><a href="https://github.com/libigl/libigl"> libigl </a> </td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1NHWkpo3jB8qlSJeNwTd9WPnZkRV2O1gx" target="_blank">alligator</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->Knight</td>
+      <td> <!--# of Problems-->22</td>
+      <td> <!--# of variables-->7425-14850</td>
+      <td> <!--# of constraints-->30-654</td>
+      <td> <!--# of nonzeros-->127764-255528</td>
+      <td> <!--Application-->Contact Simulation</td>
+      <td> <!--Source--><a href="https://github.com/dilevin/GAUSS"> GAUSS Library </a></td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1pg2uBYZFNC-oyUHw2nwBmcaWyEhmINho">Knight</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->Wolf</td>
+      <td> <!--# of Problems-->6</td>
+      <td> <!--# of variables-->2058</td>
+      <td> <!--# of constraints-->7-67</td>
+      <td> <!--# of nonzeros-->32313</td>
+      <td> <!--Application-->Contact Simulation</td>
+      <td> <!--Source--><a href="https://github.com/dilevin/GAUSS"> GAUSS Library </a></td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1_ym0avmISN8qWMfNFF9s7kEH1Ey4IC02">Wolf</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->Woody</td>
+      <td> <!--# of Problems-->5</td>
+      <td> <!--# of variables-->694</td>
+      <td> <!--# of constraints-->694</td>
+      <td> <!--# of nonzeros-->6472</td>
+      <td> <!--Application-->Image deformation</td>
+      <td> <!--Source--><a href="https://github.com/libigl/libigl"> libigl </a> </td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1fOvRggQcddSZF0D2sqaxXC53n_hxg40N">Woody</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->Nail</td>
+      <td> <!--# of Problems-->3</td>
+      <td> <!--# of variables-->3245-3257</td>
+      <td> <!--# of constraints-->81</td>
+      <td> <!--# of nonzeros-->55186-55780</td>
+      <td> <!--Application-->Cloth Simulation</td>
+      <td> <!--Source--><a href="https://github.com/sueda/eol-cloth"> EOL-Cloth library </a> </td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1pPP8_MwMNMW0gtOmcLNQhUuafVwzPobR" >Nail</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->Gargoyle</td>
+      <td> <!--# of Problems-->105</td>
+      <td> <!--# of variables-->14319-59682</td>
+      <td> <!--# of constraints-->1-918</td>
+      <td> <!--# of nonzeros-->266544-1097646</td>
+      <td> <!--Application-->Contact Simulation</td>
+      <td> <!--Source--><a href="https://github.com/dilevin/GAUSS"> GAUSS Library </a></td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1F7RIW6sUTJJtP7fvWJe58M1rE2lAWLW2" target="_blank">Gargoyle</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->Simulation3D</td>
+      <td> <!--# of Problems-->6</td>
+      <td> <!--# of variables-->114309</td>
+      <td> <!--# of constraints-->881-14191</td>
+      <td> <!--# of nonzeros-->2206404</td>
+      <td> <!--Application-->Contact Simulation</td>
+      <td> <!--Source--><a href="https://github.com/sympiler/nasoq"> NASOQ </a>  </td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1OUs8d0cmVqpdsVOGuOP-xAWHg9ihBK7Y">Simulation3D</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->Simulation2D</td>
+      <td> <!--# of Problems-->4</td>
+      <td> <!--# of variables-->812</td>
+      <td> <!--# of constraints-->33-90</td>
+      <td> <!--# of nonzeros-->2654</td>
+      <td> <!--Application-->Contact Simulation</td>
+      <td> <!--Source--><a href="https://github.com/sympiler/nasoq"> NASOQ </a></td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1QUoucgxmOzsOl-ON7QSJ9w_7nZTpCKAF" target="_blank">Simulation2D</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->Horse</td>
+      <td> <!--# of Problems-->5</td>
+      <td> <!--# of variables-->10917-21834</td>
+      <td> <!--# of constraints-->33-342</td>
+      <td> <!--# of nonzeros-->193455-386910</td>
+      <td> <!--Application-->Contact Simulation</td>
+      <td> <!--Source--><a href="https://github.com/dilevin/GAUSS"> GAUSS Library </a></td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1svm9-KS5OO_x1ApdabxP6R_8g8orOdwQ">Horse</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->Gargoyle2</td>
+      <td> <!--# of Problems-->409</td>
+      <td> <!--# of variables-->1035-2070</td>
+      <td> <!--# of constraints-->1-117</td>
+      <td> <!--# of nonzeros-->18477-36954</td>
+      <td> <!--Application-->Contact Simulation</td>
+      <td> <!--Source--><a href="https://github.com/dilevin/GAUSS"> GAUSS Library </a></td>
+      <td><a href="https://drive.google.com/uc?export=download&id=14rCXwvYN6I9cBpdB21SpOJibx-JMHhsK">Gargoyle2</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->lion</td>
+      <td> <!--# of Problems-->3</td>
+      <td> <!--# of variables-->8356</td>
+      <td> <!--# of constraints-->8356</td>
+      <td> <!--# of nonzeros-->86831</td>
+      <td> <!--Application-->Image deformation</td>
+      <td> <!--Source--><a href="https://github.com/libigl/libigl"> libigl </a> </td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1LmdeAS-YDNV2GLu7Tz7VGSSAJLgrJTFV">lion</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->Armadillo</td>
+      <td> <!--# of Problems-->16</td>
+      <td> <!--# of variables-->19158</td>
+      <td> <!--# of constraints-->57-186</td>
+      <td> <!--# of nonzeros-->338718</td>
+      <td> <!--Application-->Contact Simulation</td>
+      <td> <!--Source--><a href="https://github.com/dilevin/GAUSS"> GAUSS Library </a></td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1Cu7HmJCgb6WgwrJk-u4uwnJ5aJjNx2vi">Armadillo</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->hand</td>
+      <td> <!--# of Problems-->3</td>
+      <td> <!--# of variables-->1053</td>
+      <td> <!--# of constraints-->1053</td>
+      <td> <!--# of nonzeros-->10847</td>
+      <td> <!--Application-->Image deformation</td>
+      <td> <!--Source--><a href="https://github.com/libigl/libigl"> libigl </a> </td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1qUVYRFLc_04J2MDNExD2-BZM8MMZlgit">hand</a></td>
+    </tr>
+    <tr>
+      <td>Elephant</td>
+      <td>3</td>
+      <td>5799</td>
+      <td>7540</td>
+      <td>106179</td>
+      <td>Distortion Mapping</td>
+      <td><a href="https://noamaig.github.io/html/projects/bd3d/bd3d.html"> Aigerman and Lipman 2013 </a> </td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1RRIEVU05ICZW1KV7dXksC3LnY08uoHvn" >Elephant</a></td>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->Matt</td>
+      <td> <!--# of Problems-->3</td>
+      <td> <!--# of variables-->234-5085</td>
+      <td> <!--# of constraints-->30-72</td>
+      <td> <!--# of nonzeros-->1182-32454</td>
+      <td> <!--Application-->Contact Simulation</td>
+      <td> <!--Source-->Contact Simulator</td>
+      <td><a href="https://drive.google.com/uc?export=download&id=1NsaWMzP27vkmc3KYa-4jrgN6r0UXfgt2">Matt</a></td>
+      <tr>
+        <td> <!-- Group Name-->MarosMeszaros</td>
+        <td> <!--# of Problems-->53</td>
+        <td> <!--# of variables-->2-40397</td>
+        <td> <!--# of constraints-->3-80595</td>
+        <td> <!--# of nonzeros-->2-40397</td>
+        <td> <!--Application-->Maros-Meszaros</td>
+        <td> <!--Source--><a href="http://www.cuter.rl.ac.uk/Problems/marmes.shtml"> Maros-Meszaros</a> </td>
+        <td><a href="https://drive.google.com/uc?export=download&id=1RUdxN_VmUSN3KzaQSchGm-WHZ9cTZsjq">MarosMeszaros</a></td>
+      </tr>
+      <tr>
+        <td> <!-- Group Name-->Bar2k</td>
+        <td> <!--# of Problems-->3</td>
+        <td> <!--# of variables-->1317</td>
+        <td> <!--# of constraints-->219</td>
+        <td> <!--# of nonzeros-->20517</td>
+        <td> <!--Application-->Contact Simulaton</td>
+        <td> <!--Source--><a href="https://github.com/dilevin/GAUSS"> GAUSS Library </a></td>
+        <td><a href="https://drive.google.com/uc?export=download&id=1DzDSIEHnq1r-VAEd8KEhKDyIYzYgpep4">Bar2k</a></td>
+        <tr>
+    </tr>
+    <tr>
+      <td> <!-- Group Name-->Mpclib</td>
+      <td> <!--# of Problems-->120</td>
+      <td> <!--# of variables-->185-186</td>
+      <td> <!--# of constraints-->125-364</td>
+      <td> <!--# of nonzeros-->185-186</td>
+      <td> <!--Application-->Model Predictive Control</td>
+      <td> <!--Source--><a href="https://github.com/michele-segata/mpclib"> MPC Library </a> </td>
+      <td><a href="https://drive.google.com/uc?export=download&id=19Q1NWNmr9xHVn3aJGDF7Ys4pGlvGSYDe">Mpclib</a></td>
+      <tr>
+
   </tbody>
-</table> -->
+</table>
 
 <!--         <figure class="half" style="display:flex"  >
             <img class="image-size" src="index_files/failure_All-1.png">
