@@ -106,7 +106,7 @@ Here we provide a few suggestions based on our experience with working with diff
   </tbody>
 </table>
 
-The `PREDET` variant of NASOQ is a  variant that takes the input settings determined by the user. If you are not sure, you may start with the fixed variant of NASOQ.
+The `PREDET` variant of NASOQ is a  variant that takes the input settings determined by the user. If you are not sure, you may start with the fixed variant of NASOQ. 
 
 You can also set the maximum number of NASOQ solver iterations by setting `max_iter_nas` . After NASOQ's iterations reach this number, it terminates and returns the last solution. 
 

@@ -1,28 +1,33 @@
 
-NASOQ is a header-only library and does not need installation. Here we explain how NASOQ C++ API can be used to solve your QP problems in your code.
+ Here we explain how you can install NASOQ and use its C++ API to solve your QP problems.
 
-## C++ API
-An example of how to use NASOQ in your code is provided in `nasoq/examples` and here we explain the example step by step.
-We assume your project is somewhere like in `nasoq\examples\`. 
-
-First you need to clone the NASOQ repository in your project folder:
+##Installation
+First you should clone the NASOQ repository in your project folder:
 ```bash
 cd nasoq/examples/
 git clone https://github.com/sympiler/nasoq
 ```
+NASOQ needs the following dependencies:
 
-After cloning NASOQ, you need to modify the CMakeLists of your project file to include NASOQ dependencies. Project `NASOQ_Test` in the CMakeLists of `nasoq/examples/`  shows the components that you need to add to your CMake file. 
-After modifying the CMake file of your project, you need to ensure the library dependencies of NASOQ are installed. 
-NASOQ needs METIS and MKL BLAS Libraries as prerequisites.  
-If the installation paths of these libraries are in the system path, CMake should be able to handle dependencies. If not, you need to set CMake variables as shown below: 
+* CMake
+* C++ compiler (gcc, icc, or clang)
+* OpenMP (optional) : OpenMP is an optional dependency but without OpenMP, NASOQ runs sequentially.
+* METIS (Optional) : METIS dependency is already handled by CMake. 
+* a BLAS Library (MKL or OpenBLAS)  
+
+If the installation paths of these libraries are in the system path, CMake should be able to handle dependencies. If not, you should set CMake variables as shown below:
 ```bash
 cd where/cloned/nasoq
 mkdir build
 cd build
 cmake -DMKL_ROOT_PATH=path/to/intel -DMETIS_ROOT_PATH=path/to//metis-5.1.0/build/Linux-x86_64/  -DCMAKE_BUILD_TYPE=Release ..
+make
 ```
-NASOQ optionally needs Suitesparse library, and if it is not in the system path, you can use `-DSUITE_ROOT_PATH=path/to/suitesparse` to tell CMake where Suitesparse is installed.
+A header-only version NASOQ is accessible from [here](https://github.com/sympiler/nasoq/archive/refs/tags/v0.1.0.zip).
 
+## C++ API
+To use NASOQ C++ API, you should first install NASOQ and then follow the example provided in `nasoq/examples`. Here we explain the example step by step.
+After installing NASOQ, you should modify the CMakeLists of your project file to add nasoq and its dependent libraries, i.e., METIS and a BLAS library.  
 After setting up dependencies, You can call NASOQ solver to solve your QP problems by including ```<nasoq.h>```, and by preparing its inputs, as shown in the following code. 
 
 ```C++
@@ -79,22 +84,13 @@ int main(){
 }
 ```
 For details about inputs, outputs, and settings of NASOQ, please see the [NASOQ document page](solver.md). 
-Finally, you will build your project with NASOQ by emitting the `make` command. 
 
-You can also use NASOQ inside the source tree. One example of using nasoq is shown in the `nasoq/eigen_interface` directory.  Choosing between in-source or out-source depends on your project settings. 
+
+You can also use NASOQ inside the NASOQ source tree. One example of using nasoq is shown in the `nasoq/eigen_interface` directory.   
 
 ## Command-line interface
-In addition to C++ API, a terminal interface is also provided in the NASOQ repository. To use this interface, you need to follow the below instructions to build the interface, i.e., ```NASOQ-BIN```:
-```bash
-cd where/you/want/to/install/nasoq/
-git clone https://github.com/sympiler/nasoq
-cd nasoq 
-mkdir build
-cd build
-cmake -DMKL_ROOT_PATH=path/to/intel -DMETIS_ROOT_PATH=path/to//metis-5.1.0/build/Linux-x86_64/  -DCMAKE_BUILD_TYPE=Release ..
-make
-```
-After the build is done the terminal interface can be launched by calling ```NASOQ-BIN``` with an input QP problem. The list of switches, which can be seen by commanding ```NASOQ-BIN -h```. Some important options are shown below:
+In addition to C++ API, a terminal interface is also provided in the NASOQ repository. To use this interface, you should follow [NASOQ instructions](getting-started-nasoq.md#installation) to build the interface, i.e., ```NASOQ-BIN```.
+After the build is done, the terminal interface can be launched by calling ```NASOQ-BIN``` with an input QP problem and the list of switches, which can be seen by commanding ```NASOQ-BIN -h```. Some important options are shown below:
 ```bash
 -i : input SMP file
 -e : Requested accuracy ,e.g., -3

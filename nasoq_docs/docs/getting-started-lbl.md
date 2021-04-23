@@ -1,31 +1,18 @@
 
-LBL is a part of the NASOQ repository and is similarly a header-only library and does not need installation. Here we explain how LBL C++ API can be used to solve your sparse indefinite linear systems in your code.
+LBL is a part of the NASOQ repository and can be installed similarly. Here we explain how LBL C++ API can be used to solve your sparse indefinite linear systems.
+
+## Installation
+LBL installation is the same as [NASOQ installation instructions](getting-started-nasoq.md#installation) 
 
 ## C++ API
-An example of how to use LBL in your code is provided in the`nasoq/examples` directory, and here we explain the example step by step.
+An example of how to use LBL in your C++ code is provided in the`nasoq/examples` directory, and here we explain the example step by step.
 We assume your project is somewhere like in `nasoq\examples\`. 
-
-First you need to clone the NASOQ repository in your project folder:
-```bash
-cd nasoq/examples/
-git clone https://github.com/sympiler/nasoq
-```
-
-After cloning NASOQ, you need to modify the CMakeLists of your project file to include NASOQ dependencies. Project `LBL_Test` in the CMakeLists of the `nasoq/examples/` directory  shows the components that you need to add to your CMake file. 
-After modifying the CMake file of your project, you need to ensure the library dependencies of NASOQ are installed. 
-NASOQ needs METIS and MKL BLAS Libraries as prerequisites.  
-If the installation paths of these libraries are in the system path, CMake should be able to handle dependencies. If not, you need to set CMake variables as shown below: 
-```bash
-cd where/cloned/nasoq
-mkdir build
-cd build
-cmake -DMKL_ROOT_PATH=path/to/intel -DMETIS_ROOT_PATH=path/to//metis-5.1.0/build/Linux-x86_64/  -DCMAKE_BUILD_TYPE=Release ..
-```
-
-After setting up dependencies, You can call LBL solver to solve your linear system by including ```<linear_solver_wrapper.h>``` and preparing its inputs, as shown in the following code. 
+First you should install NASOQ and add its dependent libraries to your CMake file.
+ Project `LBL_Test` in the CMakeLists of the `nasoq/examples/` directory  shows the components that should be added to your CMake file. 
+Then you can call LBL solver to solve a linear system by including ```<linear_solver_wrapper.h>``` and preparing its inputs, as shown in the following code. 
 
 ```C++
-#include "linear_solver_wrapper.h"
+#include <QP/linear_solver_wrapper.h>
 
 /*
  * Solving Hx = q
@@ -70,6 +57,12 @@ int main(int argc, char *argv[]){
 }
 ```
 For details about inputs, outputs, and settings of LBL, please see the [LBL document page](linear-solver.md).
-Finally, you will build your project with NASOQ by emitting the `make` command. 
 
-You can also use LBL inside the NASOQ source tree. One example of using LBL is shown in the repository in the `nasoq/eigen_interface` directory.  Choosing between in-source or out-source depends on your project settings. 
+You can also use LBL inside the NASOQ source tree. One example of using LBL is shown in the repository in the `nasoq/eigen_interface` directory.  
+
+
+## SoMoD: Sparsity Oriented Row Modification
+SoMoD is designed to update the factors of LDL factorization after one or multiple rows of the input matrix is modified. 
+SoMoD is an expert routine that is only used inside NASOQ. SoMoD works when the sparsity pattern of changes is known as a priory. There is an example, `lbl_somod_main.cpp` on how to use SoMoD in `nasoq/examples`. 
+
+
