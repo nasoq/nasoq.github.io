@@ -4,15 +4,13 @@ LBL is a part of the NASOQ repository and can be installed similarly. Here we ex
 ## Installation
 LBL installation is the same as [NASOQ installation instructions](getting-started-nasoq.md#installation) 
 
-## C++ API
-An example of how to use LBL in your C++ code is provided in the`nasoq/examples` directory, and here we explain the example step by step.
-We assume your project is somewhere like in `nasoq\examples\`. 
-First you should install NASOQ and add its dependent libraries to your CMake file.
- Project `LBL_Test` in the CMakeLists of the `nasoq/examples/` directory  shows the components that should be added to your CMake file. 
-Then you can call LBL solver to solve a linear system by including ```<linear_solver_wrapper.h>``` and preparing its inputs, as shown in the following code. 
+## C++ API examples
+C++ API examples for how to use LBL and SoMod in-tree and out-of-tree are provided in the`nasoq/examples` directory. For details, please see [NASOQ C++ API](getting-started-nasoq.md#c-api-examples).  
+
+Here we show a snapshot of the LBL linear solver example (`nasoq/examples/lbl_main.cpp`): 
 
 ```C++
-#include <QP/linear_solver_wrapper.h>
+#include <nasoq/QP/linear_solver_wrapper.h>
 
 /*
  * Solving Hx = q
@@ -58,7 +56,7 @@ int main(int argc, char *argv[]){
 ```
 For details about inputs, outputs, and settings of LBL, please see the [LBL document page](linear-solver.md).
 
-You can also use LBL inside the NASOQ source tree. One example of using LBL is shown in the repository in the `nasoq/eigen_interface` directory.  
+ 
 
 
 ## SoMoD: Sparsity Oriented Row Modification

@@ -13,7 +13,7 @@ The overall process of the factorization in LBL closely follows that of standard
 In addition to solving a standalone linear system of equations, LBL also supports row modification when the sparsity pattern of changes is known ahead of time. The LBL operating mode that supports row modification is used in NASOQ and is called *sparsity oriented row modification (SoMoD)*. Here we only discuss the interface LBL as a standalone solver. 
 
 ## Settings
-The three parameters that are explained in the [NASOQ algorithm](solver.md) is in common with LBL. So the three important parameters of 
+The three parameters that are explained in the [NASOQ algorithm](solver.md) is in common with LBL. So the three important parameters are: 
 
 - *max_iter:* the maximum number of refinement iterations, GMRES for incrementally improving the solution of a linear system after the solve phase;
 

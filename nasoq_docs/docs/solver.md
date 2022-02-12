@@ -49,6 +49,10 @@ NASOQ-Fixed works well across the board without changing a default setting. To u
  ``` nasoq->variant = Tuned``` (This mode has not been included in the API yet). 
 
 
+## NASOQ Step
+NASOQ iteratively improves the solution of a QP problem. It happens in some applications that the solution after a number of iterations is enough and waiting for the final solution is not necessary. Or using an intermediate solution might help simulations progress. NASOQ Step is an interface to the NASOQ solver that provides the solution after each iteration. Users can use the intermediate solutions based on their application's needs.  
+
+
 ## Termination criteria
 The termination criteria in NASOQ are four conditions that are listed below:
 
