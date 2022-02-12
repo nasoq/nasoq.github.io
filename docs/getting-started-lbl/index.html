@@ -268,8 +268,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#c-api" class="md-nav__link">
-    C++ API
+  <a href="#c-api-examples" class="md-nav__link">
+    C++ API examples
   </a>
   
 </li>
@@ -343,8 +343,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#c-api" class="md-nav__link">
-    C++ API
+  <a href="#c-api-examples" class="md-nav__link">
+    C++ API examples
   </a>
   
 </li>
@@ -381,13 +381,10 @@
                 <p>LBL is a part of the NASOQ repository and can be installed similarly. Here we explain how LBL C++ API can be used to solve your sparse indefinite linear systems.</p>
 <h2 id="installation">Installation</h2>
 <p>LBL installation is the same as <a href="../getting-started-nasoq/#installation">NASOQ installation instructions</a> </p>
-<h2 id="c-api">C++ API</h2>
-<p>An example of how to use LBL in your C++ code is provided in the<code>nasoq/examples</code> directory, and here we explain the example step by step.
-We assume your project is somewhere like in <code>nasoq\examples\</code>. 
-First you should install NASOQ and add its dependent libraries to your CMake file.
- Project <code>LBL_Test</code> in the CMakeLists of the <code>nasoq/examples/</code> directory  shows the components that should be added to your CMake file. 
-Then you can call LBL solver to solve a linear system by including <code>&lt;linear_solver_wrapper.h&gt;</code> and preparing its inputs, as shown in the following code. </p>
-<p><div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;QP/linear_solver_wrapper.h&gt;</span><span class="cp"></span>
+<h2 id="c-api-examples">C++ API examples</h2>
+<p>C++ API examples for how to use LBL and SoMod in-tree and out-of-tree are provided in the<code>nasoq/examples</code> directory. For details, please see <a href="../getting-started-nasoq/#c-api-examples">NASOQ C++ API</a>.  </p>
+<p>Here we show a snapshot of the LBL linear solver example (<code>nasoq/examples/lbl_main.cpp</code>): </p>
+<p><div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;nasoq/QP/linear_solver_wrapper.h&gt;</span><span class="cp"></span>
 
 <span class="cm">/*</span>
 <span class="cm"> * Solving Hx = q</span>
@@ -432,7 +429,6 @@ Then you can call LBL solver to solve a linear system by including <code>&lt;lin
 <span class="p">}</span>
 </code></pre></div>
 For details about inputs, outputs, and settings of LBL, please see the <a href="../linear-solver/">LBL document page</a>.</p>
-<p>You can also use LBL inside the NASOQ source tree. One example of using LBL is shown in the repository in the <code>nasoq/eigen_interface</code> directory.  </p>
 <h2 id="somod-sparsity-oriented-row-modification">SoMoD: Sparsity Oriented Row Modification</h2>
 <p>SoMoD is designed to update the factors of LDL factorization after one or multiple rows of the input matrix is modified. 
 SoMoD is an expert routine that is only used inside NASOQ. SoMoD works when the sparsity pattern of changes is known as a priory. There is an example, <code>lbl_somod_main.cpp</code> on how to use SoMoD in <code>nasoq/examples</code>. </p>
