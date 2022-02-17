@@ -15,7 +15,7 @@ You can also download one of the NASOQ releases from [here](https://github.com/s
 You should have the following packages to be able to install NASOQ:
 
 * **CMake:** version 3.16 or higher
-* **C/C++ compiler:** Any GCC, ICC, or Clang that support C++11 should work. You can always change your compiler by setting `CMAKE_C_COMPILER` and `CMAKE_CXX_COMPILER`. For example, the following changes the compiler to GCC-10: 
+* **C/C++ compiler:** Any GCC, ICC, or Clang that support C++11 should work. You can always change your compiler by setting `CMAKE_C_COMPILER` and `CMAKE_CXX_COMPILER`. For example, the following changes the compiler to GCC-9: 
 ```bash
 cmake -DCMAKE_C_COMPILER=/usr/bin/gcc-9 -DCMAKE_CXX_COMPILER=/usr/bin/g++-9 ..
 ```
@@ -44,20 +44,16 @@ If all required dependencies are installed, you can build NASOQ. If you want NAS
 
 * Unix (Linux/Mac)
 ```bash
-cd where/cloned/nasoq
-mkdir build
-cd build
-cmake -DNASOQ_BLAS_BACKEND=OpenBLAS  -DCMAKE_BUILD_TYPE=Release ..
-make
+cd where/nasoq/cloned
+cmake -DNASOQ_BLAS_BACKEND=OpenBLAS -DCMAKE_BUILD_TYPE=Release  -S . -B build
+cmake --build build -j 6 
 ```
 
 * Windows
 ```bash
-cd where/cloned/nasoq
-mkdir build
-cd build
-cmake -DNASOQ_BLAS_BACKEND=OpenBLAS -DNASOQ_USE_CLAPACK=ON  -DCMAKE_BUILD_TYPE=Release ..
-make
+cd where/nasoq/cloned
+cmake -DNASOQ_BLAS_BACKEND=OpenBLAS -DNASOQ_USE_CLAPACK=ON -DCMAKE_BUILD_TYPE=Release  -S . -B build
+cmake --build build --config Release -j 6 
 ```
 
 

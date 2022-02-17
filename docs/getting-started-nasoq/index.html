@@ -471,7 +471,7 @@ You can also download one of the NASOQ releases from <a href="https://github.com
 <p>You should have the following packages to be able to install NASOQ:</p>
 <ul>
 <li><strong>CMake:</strong> version 3.16 or higher</li>
-<li><strong>C/C++ compiler:</strong> Any GCC, ICC, or Clang that support C++11 should work. You can always change your compiler by setting <code>CMAKE_C_COMPILER</code> and <code>CMAKE_CXX_COMPILER</code>. For example, the following changes the compiler to GCC-10: 
+<li><strong>C/C++ compiler:</strong> Any GCC, ICC, or Clang that support C++11 should work. You can always change your compiler by setting <code>CMAKE_C_COMPILER</code> and <code>CMAKE_CXX_COMPILER</code>. For example, the following changes the compiler to GCC-9: 
 <div class="highlight"><pre><span></span><code>cmake -DCMAKE_C_COMPILER<span class="o">=</span>/usr/bin/gcc-9 -DCMAKE_CXX_COMPILER<span class="o">=</span>/usr/bin/g++-9 ..
 </code></pre></div></li>
 </ul>
@@ -505,20 +505,16 @@ You can also download one of the NASOQ releases from <a href="https://github.com
 <ul>
 <li>
 <p>Unix (Linux/Mac)
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> where/cloned/nasoq
-mkdir build
-<span class="nb">cd</span> build
-cmake -DNASOQ_BLAS_BACKEND<span class="o">=</span>OpenBLAS  -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ..
-make
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> where/nasoq/cloned
+cmake -DNASOQ_BLAS_BACKEND<span class="o">=</span>OpenBLAS -DCMAKE_BUILD_TYPE<span class="o">=</span>Release  -S . -B build
+cmake --build build -j <span class="m">6</span> 
 </code></pre></div></p>
 </li>
 <li>
 <p>Windows
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> where/cloned/nasoq
-mkdir build
-<span class="nb">cd</span> build
-cmake -DNASOQ_BLAS_BACKEND<span class="o">=</span>OpenBLAS -DNASOQ_USE_CLAPACK<span class="o">=</span>ON  -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ..
-make
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> where/nasoq/cloned
+cmake -DNASOQ_BLAS_BACKEND<span class="o">=</span>OpenBLAS -DNASOQ_USE_CLAPACK<span class="o">=</span>ON -DCMAKE_BUILD_TYPE<span class="o">=</span>Release  -S . -B build
+cmake --build build --config Release -j <span class="m">6</span> 
 </code></pre></div></p>
 </li>
 </ul>
