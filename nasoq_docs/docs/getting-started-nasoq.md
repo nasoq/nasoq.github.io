@@ -29,7 +29,7 @@ Following packages improve the performance of NASOQ, but it is not necessary bec
 
 * **BLAS Library:** NASOQ needs a BLAS library for its supernodal sparse linear solver. It supports both MKL BLAS and OpenBLAS. You should set `NASOQ_BLAS_BACKEND` when you are installing NASOQ through CMake. The default BLAS is set to MKL as NASOQ is tested more thoroughly with MKL BLAS, but OpenBLAS works as well. 
 
-	* MKL BLAS (`-DNASOQ_BLAS_BACKEND="MKL"`): CMake detects the MKL library if you installed it on its default location. If you are using a new version, i.e., called oneAPI, you should set the include and binary directories to `CMAKE_PREFIX_PATH`. An example of using oneAPI 2021: 
+	* MKL BLAS (`-DNASOQ_BLAS_BACKEND="MKL"`): CMake detects the MKL library if you installed it on its default location. If you are using a new version, i.e., called oneAPI, you should set the include and binary directories to `CMAKE_PREFIX_PATH` (please make sure you set variables, e.g., `source /opt/intel/oneapi/setvars.sh`). An example of using oneAPI 2021: 
 	```	
 	cmake -DCMAKE_PREFIX_PATH="/opt/intel/oneapi/mkl/2021.2.0/lib/intel64/;/opt/intel/oneapi/mkl/2021.2.0/include/" ..``` 
 
@@ -126,6 +126,8 @@ int main(){
 }
 ```
 For details about inputs, outputs, and settings of NASOQ, please see the [NASOQ document page](solver.md). 
+
+**NOTE:** The objective matrix (_H_) should contain all diagonal entries even though the entries are zero. 
 
 ## NASOQ Step example
 An example for NASOQ Step is also provided in the NASOQ example (`nasoq/examples/nasoq_step_main.cpp`). A snapshot of the example is provided below. As shown, NASOQ Step continues iterations till its output is equal to `nasoq::NotFinished`.
